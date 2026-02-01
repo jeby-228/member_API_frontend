@@ -5,7 +5,6 @@ run:
     npm run dev
 
 build:
-    just fmt
     npm run build
 
 preview:
