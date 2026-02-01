@@ -31,8 +31,8 @@ lint:
 
 fix:
     just fmt
-    npm run check
+    just check
 
-loacl_CI:
+deploy:
     just lint
-    just build
+    npx vercel --prod
