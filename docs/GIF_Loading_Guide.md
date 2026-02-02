@@ -5,6 +5,7 @@
 ## 📁 檔案位置
 
 將 GIF 檔案放在：
+
 ```
 src/lib/assets/loading/
 ├── loading-1.gif  ← 你的 GIF
@@ -34,11 +35,11 @@ just set-loading-gif /src/lib/assets/loading/loading-1.gif
 
 ```typescript
 const defaultConfig: UIConfig = {
-  loading: {
-    defaultType: 'gif',  // ← 改成 'gif'
-    gifPath: '/src/lib/assets/loading/loading-1.gif',  // ← 你的 GIF 路徑
-    // ...
-  }
+	loading: {
+		defaultType: 'gif', // ← 改成 'gif'
+		gifPath: '/src/lib/assets/loading/loading-1.gif' // ← 你的 GIF 路徑
+		// ...
+	}
 };
 ```
 
@@ -48,15 +49,15 @@ const defaultConfig: UIConfig = {
 
 ```svelte
 <script>
-  import { LoadingAnimation } from '$lib/components/atoms';
+	import { LoadingAnimation } from '$lib/components/atoms';
 </script>
 
 <!-- 使用自訂 GIF -->
-<LoadingAnimation 
-  type="gif" 
-  gifPath="/src/lib/assets/loading/loading-1.gif"
-  size="lg"
-  message="載入中..."
+<LoadingAnimation
+	type="gif"
+	gifPath="/src/lib/assets/loading/loading-1.gif"
+	size="lg"
+	message="載入中..."
 />
 ```
 
@@ -75,20 +76,24 @@ const defaultConfig: UIConfig = {
 ## 🎨 GIF 動畫建議規格
 
 ### **尺寸**
+
 - **小型（sm）**：64x64 px
 - **中型（md）**：128x128 px（推薦）
 - **大型（lg）**：200x200 px
 
 ### **檔案大小**
+
 - 建議 < 500 KB（載入快速）
 - 最大不超過 1 MB
 
 ### **格式建議**
+
 - ✅ GIF（動畫）
 - ✅ APNG（更高畫質）
 - ✅ WebP（更小檔案）
 
 ### **背景**
+
 - 建議使用透明背景
 - 或純色背景（深色模式會自動調整）
 
@@ -101,13 +106,13 @@ const defaultConfig: UIConfig = {
 ```typescript
 // src/lib/design/animation-tokens.ts
 export const gifAnimation = {
-  library: {
-    loading1: '/src/lib/assets/loading/loading-1.gif',
-    loading2: '/src/lib/assets/loading/loading-2.gif',
-    loading3: '/src/lib/assets/loading/loading-3.gif',
-    cute: '/src/lib/assets/loading/cute-cat.gif',
-    spinner: '/src/lib/assets/loading/spinner.gif',
-  }
+	library: {
+		loading1: '/src/lib/assets/loading/loading-1.gif',
+		loading2: '/src/lib/assets/loading/loading-2.gif',
+		loading3: '/src/lib/assets/loading/loading-3.gif',
+		cute: '/src/lib/assets/loading/cute-cat.gif',
+		spinner: '/src/lib/assets/loading/spinner.gif'
+	}
 };
 ```
 
@@ -129,13 +134,13 @@ const gifPath = gifAnimation.library.cute;
 ```svelte
 <!-- src/lib/features/course/components/LoadingState.svelte -->
 <script lang="ts">
-  import { LoadingAnimation } from '$lib/components/atoms';
+	import { LoadingAnimation } from '$lib/components/atoms';
 </script>
 
-<LoadingAnimation 
-  type="gif" 
-  gifPath="/src/lib/assets/loading/loading-1.gif"
-  message="載入課程中..."
+<LoadingAnimation
+	type="gif"
+	gifPath="/src/lib/assets/loading/loading-1.gif"
+	message="載入課程中..."
 />
 ```
 
@@ -145,17 +150,17 @@ const gifPath = gifAnimation.library.cute;
 
 ```svelte
 <script>
-  import { LoadingAnimation } from '$lib/components/atoms';
-  
-  let useGif = $state(true);  // 根據需求切換
+	import { LoadingAnimation } from '$lib/components/atoms';
+
+	let useGif = $state(true); // 根據需求切換
 </script>
 
 {#if isLoading}
-  {#if useGif}
-    <LoadingAnimation type="gif" gifPath="/src/lib/assets/loading/loading-1.gif" />
-  {:else}
-    <LoadingAnimation type="spinner" />
-  {/if}
+	{#if useGif}
+		<LoadingAnimation type="gif" gifPath="/src/lib/assets/loading/loading-1.gif" />
+	{:else}
+		<LoadingAnimation type="spinner" />
+	{/if}
 {/if}
 ```
 
@@ -165,14 +170,14 @@ const gifPath = gifAnimation.library.cute;
 
 ```svelte
 <script>
-  import { theme } from '$lib/stores/theme';
-  import { LoadingAnimation } from '$lib/components/atoms';
-  
-  const gifPath = $derived(
-    $theme === 'dark' 
-      ? '/src/lib/assets/loading/dark-loading.gif'
-      : '/src/lib/assets/loading/light-loading.gif'
-  );
+	import { theme } from '$lib/stores/theme';
+	import { LoadingAnimation } from '$lib/components/atoms';
+
+	const gifPath = $derived(
+		$theme === 'dark'
+			? '/src/lib/assets/loading/dark-loading.gif'
+			: '/src/lib/assets/loading/light-loading.gif'
+	);
 </script>
 
 <LoadingAnimation type="gif" {gifPath} />
@@ -187,15 +192,15 @@ const gifPath = gifAnimation.library.cute;
 ```typescript
 // src/lib/design/animation-tokens.ts
 export const gifAnimation = {
-  // 根據環境載入不同 GIF
-  getGifPath(env: string) {
-    const paths = {
-      production: '/assets/loading/production.gif',
-      development: '/assets/loading/dev.gif',
-      test: '/assets/loading/test.gif'
-    };
-    return paths[env] || paths.development;
-  }
+	// 根據環境載入不同 GIF
+	getGifPath(env: string) {
+		const paths = {
+			production: '/assets/loading/production.gif',
+			development: '/assets/loading/dev.gif',
+			test: '/assets/loading/test.gif'
+		};
+		return paths[env] || paths.development;
+	}
 };
 ```
 
@@ -219,11 +224,11 @@ const randomGif = gifLibrary[Math.floor(Math.random() * gifLibrary.length)];
 
 ```typescript
 export const gifAnimation = {
-  size: {
-    sm: '64px',    // 改成你想要的尺寸
-    md: '150px',   // 預設 128px
-    lg: '250px'    // 預設 200px
-  }
+	size: {
+		sm: '64px', // 改成你想要的尺寸
+		md: '150px', // 預設 128px
+		lg: '250px' // 預設 200px
+	}
 };
 ```
 
@@ -233,15 +238,16 @@ export const gifAnimation = {
 
 ### **GIF vs CSS 動畫效能比較**
 
-| 項目 | GIF | CSS 動畫 |
-|------|-----|---------|
-| 檔案大小 | 50-500 KB | 0 KB（純 CSS）|
-| CPU 使用 | 中等 | 低（GPU 加速）|
-| 可客製化 | 低 | 高 |
-| 載入時間 | 需下載 | 即時 |
-| 適合場景 | 品牌動畫 | 通用場景 |
+| 項目     | GIF       | CSS 動畫       |
+| -------- | --------- | -------------- |
+| 檔案大小 | 50-500 KB | 0 KB（純 CSS） |
+| CPU 使用 | 中等      | 低（GPU 加速） |
+| 可客製化 | 低        | 高             |
+| 載入時間 | 需下載    | 即時           |
+| 適合場景 | 品牌動畫  | 通用場景       |
 
 ### **建議**
+
 - ✅ 品牌識別、特殊動畫 → 使用 GIF
 - ✅ 一般 Loading → 使用 CSS 動畫（Spinner/Dots/Pulse）
 - ✅ 混合使用：主要頁面用 GIF，次要頁面用 CSS
@@ -251,11 +257,13 @@ export const gifAnimation = {
 ## 🎨 尋找 GIF 資源
 
 ### **免費 GIF 網站**
+
 - [LottieFiles](https://lottiefiles.com/) - 高品質動畫（需轉換）
 - [Giphy](https://giphy.com/) - 海量 GIF
 - [Loading.io](https://loading.io/) - 專業 Loading 動畫
 
 ### **自製 GIF 工具**
+
 - Adobe After Effects + LottieFiles Plugin
 - Figma + Figmotion Plugin
 - Online GIF Maker
@@ -274,15 +282,19 @@ export const gifAnimation = {
 ## 🐛 常見問題
 
 ### Q1：GIF 不顯示？
+
 **A：** 檢查路徑是否正確，確保 GIF 在 `src/lib/assets/loading/` 資料夾
 
 ### Q2：GIF 太大載入慢？
+
 **A：** 使用線上工具壓縮 GIF（如 ezgif.com）
 
 ### Q3：深色模式下 GIF 看不清？
+
 **A：** 使用透明背景的 GIF，或準備兩個版本
 
 ### Q4：如何在多個頁面使用不同 GIF？
+
 **A：** 在元件中直接傳入 `gifPath` prop
 
 ---

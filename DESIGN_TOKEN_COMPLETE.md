@@ -319,8 +319,8 @@ just set-loading gif
 just set-loading-gif /src/lib/assets/loading/loading-1.gif
 
 # 方法 2：在元件中使用
-<LoadingAnimation 
-  type="gif" 
+<LoadingAnimation
+  type="gif"
   gifPath="/src/lib/assets/loading/loading-1.gif"
   size="md"
 />
