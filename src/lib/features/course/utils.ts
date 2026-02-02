@@ -1,4 +1,6 @@
-import type { Course } from '$lib/types/course';
+// src/lib/features/course/utils.ts
+
+import type { Course } from './types';
 
 /**
  * 格式化日期時間為 MM/DD HH:MM 格式
