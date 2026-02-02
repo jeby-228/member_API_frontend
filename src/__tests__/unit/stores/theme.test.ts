@@ -15,7 +15,7 @@ describe('Theme Store', () => {
 				return { theme: null };
 			});
 			vi.resetModules();
-			
+
 			expect(localStorage.getItem('theme-preference')).toBe('dark');
 		});
 
@@ -47,18 +47,18 @@ describe('Theme Store', () => {
 	describe('toggle', () => {
 		it('應該從 light 切換到 dark', () => {
 			localStorage.setItem('theme-preference', 'light');
-			
+
 			theme.toggle();
-			
+
 			const stored = localStorage.getItem('theme-preference');
 			expect(stored).toBe('dark');
 		});
 
 		it('應該從 dark 切換到 light', () => {
 			localStorage.setItem('theme-preference', 'dark');
-			
+
 			theme.toggle();
-			
+
 			const stored = localStorage.getItem('theme-preference');
 			expect(stored).toBe('light');
 		});
@@ -71,10 +71,10 @@ describe('Theme Store', () => {
 
 			const initialTheme = currentTheme;
 			theme.toggle();
-			
+
 			expect(currentTheme).not.toBe(initialTheme);
 			expect(['light', 'dark']).toContain(currentTheme);
-			
+
 			unsubscribe();
 		});
 	});
@@ -82,14 +82,14 @@ describe('Theme Store', () => {
 	describe('set', () => {
 		it('應該設定主題為 dark', () => {
 			theme.set('dark');
-			
+
 			const stored = localStorage.getItem('theme-preference');
 			expect(stored).toBe('dark');
 		});
 
 		it('應該設定主題為 light', () => {
 			theme.set('light');
-			
+
 			const stored = localStorage.getItem('theme-preference');
 			expect(stored).toBe('light');
 		});
@@ -105,7 +105,7 @@ describe('Theme Store', () => {
 
 			theme.set('light');
 			expect(currentTheme).toBe('light');
-			
+
 			unsubscribe();
 		});
 
@@ -168,7 +168,7 @@ describe('Theme Store', () => {
 
 			const countAfterSubscribe = callCount;
 			unsubscribe();
-			
+
 			theme.set('dark');
 			theme.set('light');
 

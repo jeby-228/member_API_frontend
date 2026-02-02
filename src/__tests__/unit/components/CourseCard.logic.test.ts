@@ -125,7 +125,7 @@ describe('CourseCard Logic', () => {
 		it('應該正確處理即將額滿的課程', () => {
 			const course = { ...mockCourse, enrolled: 15 };
 			const available = calculateAvailableSeats(course);
-			
+
 			expect(available).toBe(5);
 			expect(isAlmostFull(available)).toBe(true);
 			expect(isFull(available)).toBe(false);
@@ -135,7 +135,7 @@ describe('CourseCard Logic', () => {
 		it('應該正確處理已額滿的課程', () => {
 			const course = { ...mockCourse, enrolled: 20 };
 			const available = calculateAvailableSeats(course);
-			
+
 			expect(available).toBe(0);
 			expect(isAlmostFull(available)).toBe(true);
 			expect(isFull(available)).toBe(true);
@@ -145,7 +145,7 @@ describe('CourseCard Logic', () => {
 		it('應該正確處理名額充足的課程', () => {
 			const course = { ...mockCourse, enrolled: 10 };
 			const available = calculateAvailableSeats(course);
-			
+
 			expect(available).toBe(10);
 			expect(isAlmostFull(available)).toBe(false);
 			expect(isFull(available)).toBe(false);
