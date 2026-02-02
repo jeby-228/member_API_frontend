@@ -1,18 +1,13 @@
-import { example } from '$lib/utils/formatCheck';
 import { describe, expect, it } from 'vitest';
+import { emailExample } from '$lib/utils/formatCheck';
 
-describe('formatCheck 工具函式', () => {
-	describe('example', () => {
-		it('應該處理正常情境', () => {
-			expect(example('test')).toBe(true);
-		});
 
-		it('應該處理邊界值', () => {
-			expect(example('')).toBe(false);
-		});
+describe('emailExample', () => {
+	it('should return true for valid email addresses', () => {
+		expect(emailExample('test@example.com')).toBe(true);
+	});
 
-		it('應該處理錯誤情境', () => {
-			// TODO: 新增更多測試案例
-		});
+	it('should return false for invalid email addresses', () => {
+		expect(emailExample('invalid-email')).toBe(false);
 	});
 });

@@ -1,177 +1,335 @@
 ---
-description: Copilot AI 協作指引 - 程式碼風格與開發原則
+description: GitHub Copilot 協作指引 - SvelteKit 5 專案開發規範
 ---
 
-# Copilot 指引
+# GitHub Copilot 指引
+
+> 本指引定義專案的開發規範、架構模式和最佳實踐，確保程式碼品質與一致性。
 
 ## 核心原則
 
-1. **簡單至上**：不要過度設計功能和架構，保持程式碼簡潔易懂
-2. **一件事做好**：每個函式、元件、模組只負責一項職責
-3. **清晰優於聰明**：程式碼應該易於閱讀和維護，而不是追求最少行數
-4. **測試先行**：在實作新功能前考慮如何測試
+### 1. 簡單至上（KISS - Keep It Simple, Stupid）
 
-## 專案技術棧
+- ✅ 不要過度設計功能和架構
+- ✅ 保持程式碼簡潔易懂
+- ✅ 優先使用標準方案，避免過度抽象
+- ❌ 不要為了「可能」的需求預先建立複雜架構
 
-- **框架**：SvelteKit 5+
-- **語言**：TypeScript
-- **樣式**：Svelte 內建 scoped CSS 或 Tailwind CSS
-- **狀態管理**：Svelte stores
-- **部署**：Vercel
-- **CI/CD**：GitHub Actions 搭配 just
+### 2. 單一職責（SRP - Single Responsibility Principle）
 
-## 程式碼風格
+- ✅ 每個函式只負責一項工作
+- ✅ 每個元件只處理一個功能
+- ✅ 每個模組有清楚的邊界
+- ❌ 不要建立「萬能」函式或元件
 
-### 一般原則
+### 3. 可讀性優先（Code Readability）
 
-- 程式只做好一件事
-- 避免不必要的註解（程式碼應該自我說明）
-- 使用小寫字母並儘量簡短
-- 資料應該儲存為文字檔案（JSON、YAML）
-- 可移植性比效率更重要
+- ✅ 程式碼應該自我說明
+- ✅ 清晰的命名比聰明的實作重要
+- ✅ 複雜邏輯必須加上註解說明
+- ❌ 不要為了減少行數犧牲可讀性
 
-### UNIX 哲學
+### 4. 測試先行（Test-First）
 
-- 小即是美
-- 讓程式只做好一件事
-- 儘可能早地建立原型
-- 沉默是金（減少不必要的日誌輸出）
-- 並列地思考
-- 部分加部分大於整體
+- ✅ 工具函式必須撰寫單元測試（覆蓋率 ≥ 80%）
+- ✅ API 使用整合測試（MSW 或真實環境）
+- ✅ 複雜邏輯抽離到 utils 層並測試
+- ❌ 不要 Mock fetch 測試 API（無法測試真實行為）
 
-## 命名規則
+### 5. UNIX 哲學
 
-- **變數**：camelCase（JavaScript/TypeScript 標準）
-  - 布林變數用 `is` 或 `has` 開頭：`isVisible`、`hasError`
-  - 陣列變數用複數：`users`、`items`
-- **函式**：動詞開頭，使用 camelCase
-  - 查詢函式：`getUserById()`、`fetchData()`
-  - 變更函式：`updateUser()`、`deleteItem()`
-  - 檢查函式：`isValid()`、`hasPermission()`
-- **常數**：UPPER_SNAKE_CASE
-  - 例：`API_BASE_URL`、`DEFAULT_TIMEOUT`
-- **元件**：PascalCase
-  - 例：`UserCard.svelte`、`LoginForm.svelte`
+- ✅ 小即是美（Small is beautiful）
+- ✅ 讓程式只做好一件事（Do one thing well）
+- ✅ 儘早建立原型（Build prototypes quickly）
+- ✅ 資料儲存為文字格式（JSON、YAML）
+- ✅ 可移植性比效率重要
+---
 
-## SvelteKit 開發規範
+## 技術棧
 
-### 路由與檔案結構
+| 技術           | 版本 | 用途               |
+| -------------- | ---- | ------------------ |
+| **SvelteKit**  | 5+   | 前端框架           |
+| **TypeScript** | 5+   | 型別系統           |
+| **Vite**       | 6+   | 建置工具           |
+| **Vitest**     | 2+   | 測試框架           |
+| **MSW**        | 2+   | API Mock（測試用） |
+| **Prettier**   | -    | 程式碼格式化       |
+| **Just**       | -    | 任務執行器         |
+
+---
+
+## 專案架構
+
+### 檔案結構
 
 ```
 src/
-├── routes/                # 路由（基於檔案系統）
-│   ├── +layout.svelte     # 根布局
-│   ├── +page.svelte       # 首頁
-│   └── [id]/
-│       └── +page.svelte   # 動態路由
+├── routes/              # SvelteKit 路由
 ├── lib/
-│   ├── components/        # 可重用 Svelte 元件
-│   ├── stores/            # Svelte stores（狀態管理）
-│   ├── api/               # API 呼叫函式
-│   ├── utils/             # 工具函式
-│   └── config.ts          # 全域設定
-└── styles/                # 全域樣式（如有）
+│   ├── features/        # 功能模組（推薦）
+│   │   └── course/
+│   │       ├── components/  # 功能專屬元件
+│   │       ├── api.ts       # API 函式
+│   │       ├── types.ts     # 型別定義
+│   │       ├── store.ts     # 狀態管理
+│   │       ├── utils.ts     # 工具函式
+│   │       └── index.ts     # 統一匯出
+│   ├── components/      # 通用元件
+│   │   ├── atoms/       # 原子元件
+│   │   ├── molecules/   # 分子元件
+│   │   └── organisms/   # 有機體元件
+│   ├── api/             # API 函式（傳統架構）
+│   ├── utils/           # 工具函式
+│   └── stores/          # 全域狀態
+└── __tests__/           # 測試檔案
+    ├── unit/            # 單元測試
+    ├── integration/     # 整合測試
+    └── mocks/           # MSW Handlers
 ```
 
-### 元件設計
+---
 
-- 一個檔案一個元件
-- 元件名稱用 PascalCase
-- Props 定義使用 `let` 宣告：
-  ```svelte
-  <script lang="ts">
-  	export let title: string;
-  	export let count: number = 0;
-  </script>
-  ```
-- 事件分發使用 `createEventDispatcher`
-- Svelte 內建 scoped CSS，避免全域樣式污染
+## 測試策略
 
-### 狀態管理
+### 測試金字塔
 
-- 使用 Svelte stores 管理共享狀態
-- Store 檔案放在 `src/lib/stores/`
-- 使用 `writable`、`readable`、`derived` stores
-- 避免過度複雜的狀態樹
+```
+        /\
+       /E2E\        ← 少量（關鍵流程）
+      /____\
+     /      \
+    /  API   \      ← 適量（整合測試）
+   /__________\
+  /            \
+ /    Utils     \   ← 大量（單元測試）
+/________________\
+```
 
-### TypeScript 使用
+### 測試範圍
 
-- 所有檔案使用 `.ts` 或 `.svelte` 擴展名
-- 定義 types 和 interfaces 在 `lib/types/` 或檔案頂部
-- 不要使用 `any` 型別，儘量精確定義
+| 層級         | 測試方式 | 工具                   | 覆蓋率目標 |
+| ------------ | -------- | ---------------------- | ---------- |
+| **Utils 層** | 單元測試 | Vitest                 | ≥ 80%      |
+| **API 層**   | 整合測試 | MSW                    | 主要 API   |
+| **元件層**   | 元件測試 | Testing Library (可選) | 關鍵元件   |
+| **頁面層**   | E2E 測試 | Playwright (可選)      | 關鍵流程   |
 
-## API 串接原則
-
-### RESTful 設計
-
-- 使用適當的 HTTP 方法：GET（獲取）、POST（建立）、PUT（更新）、DELETE（刪除）
-- 清晰且有意義的端點命名（複數名詞）：`/api/users`、`/api/posts`
-- 路徑層級不超過 2 層：`/api/users/:id/posts`
-- 使用標準的 HTTP 狀態碼：
-  - 200 OK、201 Created
-  - 400 Bad Request、401 Unauthorized、403 Forbidden
-  - 404 Not Found、500 Internal Server Error
-- 提供分頁、篩選、排序功能
-- 使用 JSON 作為資料交換格式
-- 提供詳細的錯誤訊息（含 error code 和 message）
-- 保持向後相容性
-
-### API 呼叫封裝
-
-在 `src/lib/api/` 中建立 API 函式：
+### ❌ 錯誤的測試方式
 
 ```typescript
-// src/lib/api/users.ts
-export async function getUser(id: string) {
-	const response = await fetch(`/api/users/${id}`);
-	if (!response.ok) throw new Error('Failed to fetch user');
-	return response.json();
+// ❌ 不要 Mock fetch 測試 API
+describe('getUser', () => {
+	it('should fetch user', async () => {
+		global.fetch = vi.fn(() => Promise.resolve({ ok: true, json: () => ({ id: '1' }) }));
+		const user = await getUser('1');
+		expect(user.id).toBe('1');
+	});
+});
+```
+
+**問題：**
+
+- 只測試了 fetch 的呼叫，沒有測試真實 API
+- API 行為改變時測試不會發現
+- 維護成本高
+
+### ✅ 正確的測試方式
+
+#### 1. 工具函式用單元測試
+
+```typescript
+// src/lib/features/course/utils.ts
+export function calculateAvailableSeats(course: Course): number {
+	return course.capacity - course.enrolled;
 }
 ```
 
-## UI 設計原則
+```typescript
+// tests/unit/features/course/utils.test.ts
+import { describe, it, expect } from 'vitest';
+import { calculateAvailableSeats } from '$lib/features/course/utils';
 
-### 視覺設計
-
-- **一致性（Consistency）**：統一色彩、字型、間距，建立識別系統
-- **簡潔性（Simplicity）**：內容優先，減少不必要的視覺元素
-- **視覺層級（Hierarchy）**：透過尺寸、顏色、對比引導使用者注意力
-- **即時回饋（Feedback）**：所有互動都應有視覺反應（loading、error、success）
-- **心理預期（Mental Models）**：遵守使用者既有認知（如放大鏡代表搜尋）
-
-### 無障礙性（A11y）
-
-- 使用語意化 HTML：`<button>`、`<nav>`、`<main>`
-- 為互動元素提供 `aria-label` 或 `title` 屬性
-- 確保顏色對比度足夠（WCAG AA 標準）
-- 支援鍵盤導航（Tab、Enter、Escape）
-
-## 開發流程
-
-### 優先使用justfile 提供的任務來解決問題
-
-### Commit 規範
-
-使用清晰的 commit 訊息：
-
-```
-feat: 新增使用者登入功能
-fix: 修復路由導航錯誤
-docs: 更新 README 文件
-style: 調整元件樣式
-refactor: 優化 API 呼叫邏輯
-test: 新增單元測試
-chore: 更新依賴套件
+describe('calculateAvailableSeats', () => {
+	it('should calculate correctly', () => {
+		const course = { capacity: 20, enrolled: 15 };
+		expect(calculateAvailableSeats(course)).toBe(5);
+	});
+});
 ```
 
-### 測試
+#### 2. API 用整合測試（MSW）
 
-- 撰寫單元測試涵蓋核心邏輯
-- 使用 Vitest 或 Jest 進行測試
-- 測試檔案放在 `src/__tests__/` 或元件同級目錄
+```typescript
+// tests/mocks/handlers.ts
+import { http, HttpResponse } from 'msw';
 
-### 建置與部署
+export const handlers = [
+	http.get('/api/users/:id', ({ params }) => {
+		return HttpResponse.json({
+			id: params.id,
+			name: 'Test User'
+		});
+	})
+];
+```
 
-- 使用 `npm run build` 建置
-- 使用 `just` 執行常見任務（見 justfile）
-- CI 會自動測試、建置並部署到 Vercel
+```typescript
+// tests/integration/api/users.test.ts
+import { describe, it, expect } from 'vitest';
+import { getUser } from '$lib/api/users';
+
+describe('Users API', () => {
+	it('should get user', async () => {
+		const user = await getUser('1');
+		expect(user.name).toBe('Test User');
+	});
+});
+```
+
+---
+
+## 命名規則
+
+| 類型       | 規則             | 範例                                  |
+| ---------- | ---------------- | ------------------------------------- |
+| **元件**   | PascalCase       | `UserCard.svelte`, `LoginForm.svelte` |
+| **函式**   | camelCase        | `getUserById()`, `formatDate()`       |
+| **變數**   | camelCase        | `userName`, `isActive`, `courseList`  |
+| **常數**   | UPPER_SNAKE_CASE | `API_BASE_URL`, `MAX_RETRY`           |
+| **布林值** | is/has 開頭      | `isVisible`, `hasError`, `canEdit`    |
+
+---
+
+## 元件開發
+
+### Svelte 5 語法
+
+```svelte
+<script lang="ts">
+	interface Props {
+		name: string;
+		count?: number;
+	}
+	let { name, count = 0 }: Props = $props();
+
+	let value = $state(0);
+	let doubled = $derived(value * 2);
+
+	$effect(() => {
+		console.log('value changed:', value);
+	});
+</script>
+
+<button onclick={() => (value += 1)}>
+	{name}: {doubled}
+</button>
+```
+
+---
+
+## API 開發
+
+### RESTful 原則
+
+1. **HTTP 方法**
+   - GET：獲取資源
+   - POST：建立資源
+   - PUT：完整更新
+   - PATCH：部分更新
+   - DELETE：刪除資源
+
+2. **端點命名**
+   - 使用複數名詞：`/api/users`、`/api/courses`
+   - 層級不超過 2 層
+
+3. **狀態碼**
+   - 200 OK、201 Created
+   - 400 Bad Request、401 Unauthorized
+   - 404 Not Found、500 Internal Server Error
+
+---
+
+## Git 提交規範
+
+| Type       | 說明     | 範例                       |
+| ---------- | -------- | -------------------------- |
+| `feat`     | 新增功能 | `feat: 新增使用者登入表單` |
+| `fix`      | 修復 Bug | `fix: 修復路由導航錯誤`    |
+| `docs`     | 文件更新 | `docs: 更新 API 文件`      |
+| `test`     | 新增測試 | `test: 新增 API 整合測試`  |
+| `refactor` | 重構     | `refactor: 優化 API 邏輯`  |
+| `chore`    | 雜項     | `chore: 更新依賴套件`      |
+
+---
+
+## Just 指令
+
+### 常用指令
+
+```bash
+just                # 列出所有指令
+just init           # 安裝依賴
+just run            # 啟動開發伺服器
+just test           # 執行測試
+just test-coverage  # 產生覆蓋率報告
+just fmt            # 格式化程式碼
+just check          # 型別檢查
+```
+
+### 建立範本
+
+```bash
+# 傳統架構
+just new-util validation        # 工具函式 + 測試
+just new-component UserCard     # Svelte 元件
+just new-api users              # RESTful API
+
+# 模組化架構（推薦）
+just new-feature course                      # 功能模組
+just new-feature-component course CourseCard # 為模組新增元件
+```
+
+---
+
+## 最佳實踐
+
+### ✅ 應該做的
+
+1. **保持簡單** - 不要過度設計
+2. **單一職責** - 每個函式/元件只做一件事
+3. **型別安全** - 充分利用 TypeScript
+4. **測試工具函式** - 覆蓋率 ≥ 80%
+5. **API 整合測試** - 使用 MSW
+6. **功能模組化** - 大專案使用 features/
+7. **統一匯出** - 簡化 import
+8. **清晰命名** - 程式碼自我說明
+
+### ❌ 不應該做的
+
+1. **過度抽象** - 不要預先建立複雜架構
+2. **忽略測試** - 工具函式必須測試
+3. **Mock fetch 測試 API** - 改用 MSW
+4. **使用 any** - 避免使用 any 型別
+5. **相對路徑** - 使用 $lib 別名
+6. **巨大元件** - 拆分成小元件
+7. **硬編碼** - 使用環境變數
+8. **無意義註解** - 程式碼應該自我說明
+
+---
+
+## 參考資源
+
+### 專案文件
+
+- [API_Testing_Strategy.md](./docs/API_Testing_Strategy.md) - API 測試策略完整指南
+- [Quick_Start.md](./docs/Quick_Start.md) - 快速開始指南
+- [Component_Architecture.md](./docs/Component_Architecture.md) - 元件抽象層架構
+- [API_Guide.md](./docs/API_Guide.md) - API 開發完整指南
+- [Architecture_Patterns.md](./docs/Architecture_Patterns.md) - 架構模式比較
+
+---
+
+**記住：API 是整合點，用整合測試；商業邏輯是單元，用單元測試。** 🧪
+
+_最後更新：2026-02-02_

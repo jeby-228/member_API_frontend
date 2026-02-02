@@ -5,7 +5,7 @@
  * @param input - 輸入參數
  * @returns 回傳值說明
  */
-export function example(input: string): boolean {
-	// TODO: 實作函式邏輯
-	return input.length > 0;
+export function emailExample(num: string): boolean {
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(num);
 }

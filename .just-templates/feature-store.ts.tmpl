@@ -1,0 +1,19 @@
+// src/lib/features/NAME/store.ts
+
+import { writable } from 'svelte/store';
+import type { NAME } from './types';
+
+/**
+ * 選中的 NAME
+ */
+export const selectedNAME = writable<NAME | null>(null);
+
+/**
+ * NAME 列表
+ */
+export const NAMEList = writable<NAME[]>([]);
+
+/**
+ * Loading 狀態
+ */
+export const isLoading = writable(false);
