@@ -1,0 +1,26 @@
+{
+	"eslint.validate": ["svelte", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+	"workbench.editor.customLabels.patterns": {
+		"**/routes/**/+page.ts": "${dirname}/+page.ts",
+		"**/routes/**/+page.svelte": "${dirname}/+page.svelte",
+		"**/routes/**/+page.server.ts": "${dirname}/+page.server.ts",
+		"**/routes/**/+layout.ts": "${dirname}/+layout.ts",
+		"**/routes/**/+layout.svelte": "${dirname}/+layout.svelte",
+		"**/routes/**/+layout.server.ts": "${dirname}/+layout.server.ts"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode",
+		"editor.formatOnSave": true
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 1000,
+	"git.autofetch": true
+}
