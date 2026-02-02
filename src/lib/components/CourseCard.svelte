@@ -1,5 +1,12 @@
 <script lang="ts">
 	import type { Course } from '$lib/types/course';
+	import {
+		formatDateTime,
+		calculateAvailableSeats,
+		isAlmostFull,
+		isFull,
+		getButtonText
+	} from './CourseCard.logic';
 
 	interface Props {
 		course: Course;
@@ -7,23 +14,16 @@
 
 	let { course }: Props = $props();
 
-	function formatDateTime(dateString: string): string {
-		const date = new Date(dateString);
-		const month = String(date.getMonth() + 1).padStart(2, '0');
-		const day = String(date.getDate()).padStart(2, '0');
-		const hours = String(date.getHours()).padStart(2, '0');
-		const minutes = String(date.getMinutes()).padStart(2, '0');
-		return `${month}/${day} ${hours}:${minutes}`;
-	}
-
-	const availableSeats = $derived(course.capacity - course.enrolled);
-	const isAlmostFull = $derived(availableSeats <= 5);
+	const availableSeats = $derived(calculateAvailableSeats(course));
+	const almostFull = $derived(isAlmostFull(availableSeats));
+	const fullCourse = $derived(isFull(availableSeats));
+	const buttonText = $derived(getButtonText(availableSeats));
 </script>
 
 <article class="course-card">
 	<div class="course-header">
 		<h3 class="course-name">{course.name}</h3>
-		<span class="seats" class:warning={isAlmostFull}>
+		<span class="seats" class:warning={almostFull}>
 			剩餘 {availableSeats} 名額
 		</span>
 	</div>
@@ -49,8 +49,8 @@
 		<p class="course-description">{course.description}</p>
 	{/if}
 
-	<button class="book-button" disabled={availableSeats === 0}>
-		{availableSeats === 0 ? '已額滿' : '立即預約'}
+	<button class="book-button" disabled={fullCourse}>
+		{buttonText}
 	</button>
 </article>
 
