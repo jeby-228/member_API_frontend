@@ -52,28 +52,29 @@
 
 <div class="login-container">
 	<div class="login-box">
-		<h1>會員登入</h1>
+		<div class="login-header">
+			<h1>歡迎回來</h1>
+			<p>請登入您的帳號</p>
+		</div>
 
 		<form onsubmit={handleSubmit}>
 			<div class="form-group">
-				<label for="email">電子郵件</label>
 				<input
 					type="email"
 					id="email"
 					bind:value={email}
-					placeholder="請輸入電子郵件"
+					placeholder="電子郵件"
 					required
 					disabled={loading}
 				/>
 			</div>
 
 			<div class="form-group">
-				<label for="password">密碼</label>
 				<input
 					type="password"
 					id="password"
 					bind:value={password}
-					placeholder="請輸入密碼"
+					placeholder="密碼"
 					required
 					disabled={loading}
 				/>
@@ -100,84 +101,109 @@
 		min-height: 100vh;
 		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 		padding: 20px;
+		font-family:
+			-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	}
 
 	.login-box {
 		background: white;
-		padding: 40px;
-		border-radius: 10px;
-		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+		padding: 50px 45px;
+		border-radius: 16px;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 		width: 100%;
-		max-width: 400px;
+		max-width: 420px;
 	}
 
-	h1 {
+	.login-header {
 		text-align: center;
-		color: #333;
-		margin-bottom: 30px;
-		font-size: 28px;
+		margin-bottom: 40px;
+	}
+
+	.login-header h1 {
+		color: #1a1a1a;
+		margin: 0 0 8px 0;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: -0.5px;
+	}
+
+	.login-header p {
+		color: #666;
+		margin: 0;
+		font-size: 16px;
+		font-weight: 400;
 	}
 
 	.form-group {
 		margin-bottom: 20px;
 	}
 
-	label {
-		display: block;
-		margin-bottom: 8px;
-		color: #555;
-		font-weight: 500;
-	}
-
 	input {
 		width: 100%;
-		padding: 12px;
-		border: 1px solid #ddd;
-		border-radius: 5px;
+		padding: 16px 20px;
+		border: 2px solid #e8e8e8;
+		border-radius: 10px;
 		font-size: 16px;
-		transition: border-color 0.3s;
+		transition: all 0.3s ease;
 		box-sizing: border-box;
+		background-color: #fafafa;
+	}
+
+	input::placeholder {
+		color: #999;
 	}
 
 	input:focus {
 		outline: none;
 		border-color: #667eea;
+		background-color: white;
+		box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 	}
 
 	input:disabled {
 		background-color: #f5f5f5;
 		cursor: not-allowed;
+		opacity: 0.6;
 	}
 
 	.login-button {
 		width: 100%;
-		padding: 12px;
+		padding: 16px;
 		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 		color: white;
 		border: none;
-		border-radius: 5px;
-		font-size: 16px;
+		border-radius: 10px;
+		font-size: 17px;
 		font-weight: 600;
 		cursor: pointer;
-		transition: transform 0.2s;
+		transition: all 0.3s ease;
+		margin-top: 10px;
+		box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 	}
 
 	.login-button:hover:not(:disabled) {
 		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+	}
+
+	.login-button:active:not(:disabled) {
+		transform: translateY(0);
 	}
 
 	.login-button:disabled {
 		opacity: 0.6;
 		cursor: not-allowed;
+		box-shadow: none;
 	}
 
 	.error-message {
-		background-color: #fee;
-		color: #c33;
-		padding: 12px;
-		border-radius: 5px;
+		background-color: #fff5f5;
+		color: #e53e3e;
+		padding: 14px 18px;
+		border-radius: 10px;
 		margin-bottom: 20px;
 		text-align: center;
 		font-size: 14px;
+		border: 1px solid #feb2b2;
 	}
 </style>
