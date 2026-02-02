@@ -31,7 +31,8 @@
 			const data = await response.json();
 
 			if (data.token) {
-				localStorage.setItem('token', data.token);
+				const encodedToken = encodeURIComponent(data.token);
+				document.cookie = `token=${encodedToken}; Path=/; Secure; SameSite=Strict; Max-Age=86400`;
 				await goto('/');
 			} else {
 				error = '登入失敗，未收到授權憑證';
