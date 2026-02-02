@@ -2,6 +2,12 @@
 
 SvelteKit 前端專案
 
+## 功能
+
+- ✅ 會員登入頁面 (`/login`)
+- 表單驗證和錯誤處理
+- 響應式設計
+
 ## 環境需求
 
 - Node.js 20+
@@ -15,6 +21,16 @@ https://just.systems/man/en/packages.html
 ```
 
 ## 開發指令
+
+### 環境設定
+
+複製 `.env.example` 並創建 `.env` 檔案：
+
+```bash
+cp .env.example .env
+```
+
+編輯 `.env` 設定後端 API 網址（預設為 `http://localhost:8080`）。
 
 ### 查看所有可用指令
 
