@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { API_BASE_URL } from '$lib/config';
 
 	let email = $state('');
@@ -31,7 +32,7 @@
 
 			if (data.token) {
 				localStorage.setItem('token', data.token);
-				window.location.href = '/';
+				await goto('/');
 			} else {
 				error = '登入失敗，未收到授權憑證';
 			}
