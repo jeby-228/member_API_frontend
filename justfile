@@ -13,6 +13,15 @@ build:
 preview:
     npm run preview
 
+test:
+    npm run test
+
+test-ui:
+    npm run test:ui
+
+test-coverage:
+    npm run test:coverage
+
 fmt:
     npx prettier --write .
 
@@ -25,7 +34,8 @@ check:
 check-svelte:
     npx svelte-check --tsconfig ./tsconfig.json
 
-lint:
+lint-test:
+    just test
     just fmt-check
     just check
 
@@ -34,5 +44,5 @@ fix:
     just check
 
 deploy:
-    just lint
+    just lint-test
     npx vercel --prod
