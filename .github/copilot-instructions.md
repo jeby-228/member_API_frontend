@@ -148,6 +148,8 @@ export async function getUser(id: string) {
 
 ## 開發流程
 
+### 優先使用justfile 提供的任務來解決問題
+
 ### Commit 規範
 
 使用清晰的 commit 訊息：
