@@ -1,4 +1,6 @@
-import type { Course } from '$lib/types/course';
+// src/lib/features/course/api.ts
+
+import type { Course } from './types';
 
 // Mock 資料
 const mockCourses: Course[] = [
@@ -70,6 +72,9 @@ const mockCourses: Course[] = [
 	}
 ];
 
+/**
+ * 取得可預約課程列表
+ */
 export async function getAvailableCourses(): Promise<Course[]> {
 	// 模擬 API 延遲
 	await new Promise((resolve) => setTimeout(resolve, 500));
@@ -82,6 +87,9 @@ export async function getAvailableCourses(): Promise<Course[]> {
 	return mockCourses;
 }
 
+/**
+ * 取得單一課程
+ */
 export async function getCourseById(id: string): Promise<Course | null> {
 	await new Promise((resolve) => setTimeout(resolve, 300));
 	return mockCourses.find((course) => course.id === id) || null;

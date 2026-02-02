@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Course } from '$lib/types/course';
+	import type { Course } from '../types';
 	import {
 		formatDateTime,
 		calculateAvailableSeats,
 		isAlmostFull,
 		isFull,
 		getButtonText
-	} from './CourseCard.logic';
+	} from '../utils';
 
 	interface Props {
 		course: Course;
