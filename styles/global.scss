@@ -2,7 +2,8 @@
 // 全局樣式
 // ============================================
 
-@import './_variables.scss';
+@use 'sass:color';
+@use './_variables.scss' as *;
 
 // 重置預設樣式
 * {
@@ -63,7 +64,7 @@ a {
 	transition: color $transition-duration $transition-timing;
 
 	&:hover {
-		color: darken($primary, 10%);
+		color: color.adjust($primary, $lightness: -10%);
 		text-decoration: underline;
 	}
 }
