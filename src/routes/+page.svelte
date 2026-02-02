@@ -43,6 +43,12 @@
 	{:else}
 		<CourseList {courses} />
 	{/if}
+
+	<footer>
+		<h1>website footer content</h1>
+		<a href="https://github.com/jeby-228/member_API_frontend">github link</a>
+		<img src="/assets/icons/github.svg" alt="GitHub Logo">
+	</footer>
 </div>
 
 <style>
@@ -62,6 +68,14 @@
 		font-weight: 700;
 		color: var(--text-color);
 		margin: 0 0 0.5rem 0;
+	}
+
+	footer {
+		text-align: center;
+		margin-top: 4rem;
+		padding: 2rem 0;
+		border-top: 1px solid var(--border-color);
+		color: var(--text-secondary);
 	}
 
 	.subtitle {

@@ -10,7 +10,6 @@ set-loading TYPE:
 	@echo "🎨 切換 Loading 動畫為：{{TYPE}}"
 	@sed -i "s/defaultType: '[^']*'/defaultType: '{{TYPE}}'/" src/lib/stores/ui-config.ts
 	@echo "✅ 完成！請重新整理瀏覽器查看效果"
-    just fmt
 
 # 設定自訂 GIF Loading 動畫
 set-loading-gif PATH:
@@ -18,13 +17,11 @@ set-loading-gif PATH:
 	@sed -i "s|gifPath: '[^']*'|gifPath: '{{PATH}}'|" src/lib/stores/ui-config.ts
 	@sed -i "s/defaultType: '[^']*'/defaultType: 'gif'/" src/lib/stores/ui-config.ts
 	@echo "✅ 完成！請重新整理瀏覽器查看效果"
-    just fmt
 
 # 查看當前 Loading 動畫設定
 show-loading:
 	@echo "📋 當前 Loading 動畫配置："
 	@grep -A 5 "defaultType:" src/lib/stores/ui-config.ts
-    just fmt
     
 # ============================================
 # 開發指令
