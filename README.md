@@ -4,24 +4,25 @@ SvelteKit 前端專案
 
 ## 環境需求
 
+- linux OR macOS
 - Node.js 20+
 - npm
-- just
+- just (recommended)
 
-## CI/CD
+## gitflow
 
-專案使用 GitHub Actions 自動部署到 Vercel。
+![GitFlow](gitflow.svg)
 
-每次 push 到 `main` 分支會自動：
+## CI/CD 與部署
 
-- 安裝依賴
-- 建置專案
-- 部署到 Vercel
+此專案使用 GitHub Actions 進行自動部署，主要流程定義於：
 
-### 設定 GitHub Secrets
+- `.github/workflows/deploy.yml`
 
-需要在 GitHub Repository Settings → Secrets 中設定：
+部署流程會使用以下 GitHub Repository Secrets 來與 Vercel 溝通：
 
-- `VERCEL_TOKEN` - Vercel API Token
-- `VERCEL_ORG_ID` - Vercel 組織 ID
-- `VERCEL_PROJECT_ID` - Vercel 專案 ID
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+請確認在設定專案時，已於 GitHub 專案的 Settings → Secrets and variables → Actions 中設定上述值，才能讓 CI/CD 部署流程正常運作。
