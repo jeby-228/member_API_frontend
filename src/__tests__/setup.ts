@@ -6,4 +6,4 @@ afterEach(() => {
 });
 
 // Mock fetch
-global.fetch = vi.fn();
+globalThis.fetch = vi.fn() as any;
