@@ -29,14 +29,16 @@
 	.error button {
 		padding: 0.5rem 1.5rem;
 		font-size: 1rem;
+		font-weight: 500;
 		color: white;
-		background: #2563eb;
+		background: var(--btn-primary, #2563eb);
 		border: none;
 		border-radius: 6px;
 		cursor: pointer;
+		transition: background 0.2s ease;
 	}
 
 	.error button:hover {
-		background: #1d4ed8;
+		background: var(--btn-primary-hover, #1d4ed8);
 	}
 </style>

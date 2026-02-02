@@ -84,16 +84,16 @@
 	.seats {
 		font-size: 0.875rem;
 		font-weight: 500;
-		color: #10b981;
-		background: #d1fae5;
+		color: var(--badge-success-text, #10b981);
+		background: var(--badge-success-bg, #d1fae5);
 		padding: 0.25rem 0.75rem;
 		border-radius: 9999px;
 		white-space: nowrap;
 	}
 
 	.seats.warning {
-		color: #f59e0b;
-		background: #fef3c7;
+		color: var(--badge-warning-text, #f59e0b);
+		background: var(--badge-warning-bg, #fef3c7);
 	}
 
 	.course-info {
@@ -130,7 +130,7 @@
 		font-size: 1rem;
 		font-weight: 500;
 		color: white;
-		background: #2563eb;
+		background: var(--btn-primary, #2563eb);
 		border: none;
 		border-radius: 6px;
 		cursor: pointer;
@@ -138,11 +138,11 @@
 	}
 
 	.book-button:hover:not(:disabled) {
-		background: #1d4ed8;
+		background: var(--btn-primary-hover, #1d4ed8);
 	}
 
 	.book-button:disabled {
-		background: #9ca3af;
+		background: var(--btn-disabled, #9ca3af);
 		cursor: not-allowed;
 	}
 </style>
