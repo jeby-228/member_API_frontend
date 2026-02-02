@@ -64,6 +64,7 @@
 					id="email"
 					bind:value={email}
 					placeholder="電子郵件"
+					aria-label="電子郵件"
 					required
 					disabled={loading}
 				/>
@@ -75,6 +76,7 @@
 					id="password"
 					bind:value={password}
 					placeholder="密碼"
+					aria-label="密碼"
 					required
 					disabled={loading}
 				/>
