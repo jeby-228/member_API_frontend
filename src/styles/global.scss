@@ -1,0 +1,193 @@
+// ============================================
+// 全局樣式
+// ============================================
+
+@use 'sass:color';
+@use './_variables.scss' as *;
+
+// 重置預設樣式
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+	color: $gray-900;
+	background-color: $white;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// 標題樣式
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: $spacing-md 0;
+	font-weight: $font-weight-bold;
+	line-height: $line-height-tight;
+	color: $gray-900;
+}
+
+h1 {
+	font-size: $font-size-2xl;
+}
+
+h2 {
+	font-size: $font-size-xl;
+}
+
+h3 {
+	font-size: $font-size-lg;
+}
+
+// 段落樣式
+p {
+	margin: $spacing-md 0;
+}
+
+// 連結樣式
+a {
+	color: $primary;
+	text-decoration: none;
+	transition: color $transition-duration $transition-timing;
+
+	&:hover {
+		color: color.adjust($primary, $lightness: -10%);
+		text-decoration: underline;
+	}
+}
+
+// 按鈕樣式
+button {
+	font-family: inherit;
+	cursor: pointer;
+	border: none;
+	border-radius: $border-radius-md;
+	transition: all $transition-duration $transition-timing;
+}
+
+// 表單元素
+input,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	border: $border-width solid $border-color;
+	border-radius: $border-radius-md;
+	padding: $spacing-sm $spacing-md;
+	transition: border-color $transition-duration $transition-timing;
+
+	&:focus {
+		outline: none;
+		border-color: $primary;
+		box-shadow: 0 0 0 3px rgba($primary, 0.1);
+	}
+
+	&:disabled {
+		background-color: $gray-100;
+		cursor: not-allowed;
+	}
+}
+
+// 列表樣式
+ul,
+ol {
+	margin: $spacing-md 0;
+	padding-left: $spacing-xl;
+}
+
+li {
+	margin: $spacing-sm 0;
+}
+
+// 代碼樣式
+code {
+	font-family: $font-family-mono;
+	background-color: $gray-100;
+	border-radius: $border-radius-sm;
+	padding: 0.125rem $spacing-sm;
+	color: $danger;
+}
+
+pre {
+	background-color: $gray-900;
+	color: $white;
+	padding: $spacing-md;
+	border-radius: $border-radius-md;
+	overflow-x: auto;
+
+	code {
+		background-color: transparent;
+		color: inherit;
+		padding: 0;
+	}
+}
+
+// 表格樣式
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: $spacing-md 0;
+
+	th,
+	td {
+		padding: $spacing-md;
+		text-align: left;
+		border-bottom: $border-width solid $border-color;
+	}
+
+	th {
+		background-color: $gray-100;
+		font-weight: $font-weight-bold;
+	}
+
+	tr:hover {
+		background-color: $gray-50;
+	}
+}
+
+// 響應式圖片
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+// 容器
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 $spacing-md;
+
+	@media (min-width: $breakpoint-sm) {
+		max-width: 540px;
+	}
+
+	@media (min-width: $breakpoint-md) {
+		max-width: 720px;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 960px;
+	}
+
+	@media (min-width: $breakpoint-xl) {
+		max-width: 1140px;
+	}
+
+	@media (min-width: $breakpoint-2xl) {
+		max-width: 1320px;
+	}
+}
