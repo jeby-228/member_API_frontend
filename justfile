@@ -43,10 +43,6 @@ fix:
     just fmt
     just check
 
-deploy:
-    just lint-test
-    npx vercel --prod
-
 # 新增工具函式和對應測試檔案
 new-util name:
     @echo "正在建立工具函式：{{name}}"
