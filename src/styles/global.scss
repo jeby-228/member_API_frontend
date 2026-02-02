@@ -5,6 +5,27 @@
 @use 'sass:color';
 @use './_variables.scss' as *;
 
+// CSS 變數定義
+:root {
+	--bg-color: #{$white};
+	--bg-secondary: #{$gray-50};
+	--text-color: #{$gray-900};
+	--text-secondary: #{$gray-600};
+	--border-color: #{$border-color};
+	--card-bg: #{$white};
+	--card-hover-shadow: rgba(0, 0, 0, 0.1);
+}
+
+:root.dark {
+	--bg-color: #{$dark-bg};
+	--bg-secondary: #{$dark-bg-secondary};
+	--text-color: #{$dark-text};
+	--text-secondary: #{$dark-text-secondary};
+	--border-color: #{$dark-border};
+	--card-bg: #{$dark-bg-secondary};
+	--card-hover-shadow: rgba(0, 0, 0, 0.3);
+}
+
 // 重置預設樣式
 * {
 	margin: 0;
@@ -21,10 +42,13 @@ body {
 	font-family: $font-family-base;
 	font-size: $font-size-base;
 	line-height: $line-height-base;
-	color: $gray-900;
-	background-color: $white;
+	color: var(--text-color);
+	background-color: var(--bg-color);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 // 標題樣式
@@ -37,7 +61,7 @@ h6 {
 	margin: $spacing-md 0;
 	font-weight: $font-weight-bold;
 	line-height: $line-height-tight;
-	color: $gray-900;
+	color: var(--text-color);
 }
 
 h1 {
@@ -84,9 +108,11 @@ textarea,
 select {
 	font-family: inherit;
 	font-size: inherit;
-	border: $border-width solid $border-color;
+	border: $border-width solid var(--border-color);
 	border-radius: $border-radius-md;
 	padding: $spacing-sm $spacing-md;
+	background-color: var(--bg-color);
+	color: var(--text-color);
 	transition: border-color $transition-duration $transition-timing;
 
 	&:focus {
@@ -96,7 +122,7 @@ select {
 	}
 
 	&:disabled {
-		background-color: $gray-100;
+		background-color: var(--bg-secondary);
 		cursor: not-allowed;
 	}
 }
@@ -115,7 +141,7 @@ li {
 // 代碼樣式
 code {
 	font-family: $font-family-mono;
-	background-color: $gray-100;
+	background-color: var(--bg-secondary);
 	border-radius: $border-radius-sm;
 	padding: 0.125rem $spacing-sm;
 	color: $danger;
@@ -145,16 +171,16 @@ table {
 	td {
 		padding: $spacing-md;
 		text-align: left;
-		border-bottom: $border-width solid $border-color;
+		border-bottom: $border-width solid var(--border-color);
 	}
 
 	th {
-		background-color: $gray-100;
+		background-color: var(--bg-secondary);
 		font-weight: $font-weight-bold;
 	}
 
 	tr:hover {
-		background-color: $gray-50;
+		background-color: var(--bg-secondary);
 	}
 }
 
