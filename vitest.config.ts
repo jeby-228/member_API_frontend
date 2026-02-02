@@ -6,8 +6,7 @@ test: {
 globals: true,
 environment: 'jsdom',
 setupFiles: ['./src/__tests__/setup.ts'],
-include: ['src/**/*.{test,spec}.ts'],
-exclude: ['**/node_modules/**', '**/dist/**', '**/components/**']
+include: ['src/**/*.{test,spec}.ts']
 },
 resolve: {
 alias: {
