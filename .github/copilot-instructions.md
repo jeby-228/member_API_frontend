@@ -43,6 +43,7 @@ description: GitHub Copilot 協作指引 - SvelteKit 5 專案開發規範
 - ✅ 儘早建立原型（Build prototypes quickly）
 - ✅ 資料儲存為文字格式（JSON、YAML）
 - ✅ 可移植性比效率重要
+
 ---
 
 ## 技術棧
