@@ -17,7 +17,14 @@
 </script>
 
 <div class="gif-container" role="status" aria-label="載入中">
-	<img src={gifPath} {alt} class="gif-loading" style="--gif-size: {gifSize};" loading="eager" />
+	<img
+		src={gifPath}
+		{alt}
+		class="gif-loading"
+		style="--gif-size: {gifSize};"
+		loading="eager"
+		data-unoptimized="true"
+	/>
 </div>
 
 <style>

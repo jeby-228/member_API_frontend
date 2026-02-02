@@ -27,7 +27,7 @@ const defaultConfig: UIConfig = {
 		defaultType: 'gif', // 'spinner' | 'dots' | 'pulse' | 'gif'
 		defaultSize: 'md',
 		defaultSpeed: 'normal',
-		gifPath: '/src/lib/assets/loading/loading-1.gif', // 自訂 GIF 路徑
+		gifPath: '/assets/loading/loading-1.gif', // 自訂 GIF 路徑（static/ 目錄）
 		showMessage: true,
 		messages: {
 			default: '載入中...',

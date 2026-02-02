@@ -6,7 +6,7 @@
 	let selectedType = $state<LoadingAnimationType>('spinner');
 	let selectedSize = $state<'sm' | 'md' | 'lg'>('md');
 	let selectedSpeed = $state<'slow' | 'normal' | 'fast'>('normal');
-	let customGifPath = $state('/src/lib/assets/loading/loading-1.gif');
+	let customGifPath = $state('/assets/loading/loading-1.gif');
 
 	function applyGlobal() {
 		if (selectedType === 'gif') {
@@ -48,7 +48,7 @@
 					id="gifPath"
 					type="text"
 					bind:value={customGifPath}
-					placeholder="/src/lib/assets/loading/loading-1.gif"
+					placeholder="/assets/loading/loading-1.gif"
 				/>
 			</div>
 		{/if}
@@ -134,7 +134,7 @@
 			<code>just set-loading pulse</code><br />
 			<br />
 			<code># 使用自訂 GIF</code><br />
-			<code>just set-loading-gif /src/lib/assets/loading/loading-1.gif</code>
+			<code>just set-loading-gif /assets/loading/loading-1.gif</code>
 		</div>
 
 		<h3>💡 提示</h3>

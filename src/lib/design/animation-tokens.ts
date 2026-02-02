@@ -78,12 +78,12 @@ export const gifAnimation = {
 		lg: '200px'
 	},
 	// 預設 GIF 路徑（可在 ui-config 覆蓋）
-	defaultPath: '/src/lib/assets/loading/loading-1.gif',
+	defaultPath: '/assets/loading/loading-1.gif',
 	// GIF 庫（設計師可新增更多）
 	library: {
-		loading1: '/src/lib/assets/loading/loading-1.gif',
-		loading2: '/src/lib/assets/loading/loading-2.gif',
-		loading3: '/src/lib/assets/loading/loading-3.gif'
+		loading1: '/assets/loading/loading-1.gif',
+		loading2: '/assets/loading/loading-2.gif',
+		loading3: '/assets/loading/loading-3.gif'
 	}
 };
 
