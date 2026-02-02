@@ -6,7 +6,7 @@ SvelteKit 前端專案
 
 - Node.js 20+
 - npm
-- just  
+- just
 
 ## CI/CD
 
