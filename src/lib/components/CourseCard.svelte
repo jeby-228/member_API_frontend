@@ -56,15 +56,15 @@
 
 <style>
 	.course-card {
-		background: white;
-		border: 1px solid #e5e7eb;
+		background: var(--card-bg);
+		border: 1px solid var(--border-color);
 		border-radius: 8px;
 		padding: 1.5rem;
 		transition: box-shadow 0.2s ease;
 	}
 
 	.course-card:hover {
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 12px var(--card-hover-shadow);
 	}
 
 	.course-header {
@@ -77,7 +77,7 @@
 	.course-name {
 		font-size: 1.25rem;
 		font-weight: 600;
-		color: #111827;
+		color: var(--text-color);
 		margin: 0;
 	}
 
@@ -109,17 +109,17 @@
 	}
 
 	.label {
-		color: #6b7280;
+		color: var(--text-secondary);
 		min-width: 3.5rem;
 	}
 
 	.value {
-		color: #374151;
+		color: var(--text-color);
 	}
 
 	.course-description {
 		font-size: 0.875rem;
-		color: #6b7280;
+		color: var(--text-secondary);
 		line-height: 1.5;
 		margin: 0 0 1rem 0;
 	}

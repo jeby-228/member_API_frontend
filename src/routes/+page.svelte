@@ -63,13 +63,13 @@
 	.page-header h1 {
 		font-size: 2.5rem;
 		font-weight: 700;
-		color: #111827;
+		color: var(--text-color);
 		margin: 0 0 0.5rem 0;
 	}
 
 	.subtitle {
 		font-size: 1.125rem;
-		color: #6b7280;
+		color: var(--text-secondary);
 		margin: 0;
 	}
 
@@ -106,7 +106,7 @@
 	.error p,
 	.empty p {
 		font-size: 1.125rem;
-		color: #6b7280;
+		color: var(--text-secondary);
 		margin: 0;
 	}
 
