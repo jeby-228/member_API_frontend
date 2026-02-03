@@ -49,6 +49,7 @@
 	<div class="nav-brand">Member API</div>
 	<div class="nav-links">
 		<a href="/">Home</a>
+		<a href="/weather">Weather</a>
 		<a href="/login">Login</a>
 	</div>
 	<div class="nav-actions"></div>
