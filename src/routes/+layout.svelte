@@ -51,9 +51,10 @@
 	<div class="nav-brand">Member API</div>
 	<div class="nav-links">
 		<a href="/">Home</a>
+		<a href="/design_system">Design System</a>
+		<a href="/design_system_dynamic">Design System Dynamic</a>
 		<a href="/login">Login</a>
 	</div>
-	<div class="nav-actions"></div>
 </nav>
 
 <ThemeToggle />
