@@ -15,7 +15,7 @@
 	}
 
 	let {
-		type = 'spinner',
+		type = 'gif',
 		size = 'md',
 		speed = 'normal',
 		message,
