@@ -29,11 +29,6 @@
 </script>
 
 <div class="container">
-	<header class="page-header">
-		<h1>可預約課程</h1>
-		<p class="subtitle">選擇您喜歡的課程，立即預約</p>
-	</header>
-
 	{#if isLoading}
 		<LoadingState />
 	{:else if error}
@@ -44,35 +39,3 @@
 		<CourseList {courses} />
 	{/if}
 </div>
-
-<style>
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-	}
-
-	.page-header {
-		text-align: center;
-		margin-bottom: 3rem;
-	}
-
-	.page-header h1 {
-		font-size: 2.5rem;
-		font-weight: 700;
-		color: var(--text-color);
-		margin: 0 0 0.5rem 0;
-	}
-
-	.subtitle {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-
-	@media (max-width: 768px) {
-		.page-header h1 {
-			font-size: 2rem;
-		}
-	}
-</style>

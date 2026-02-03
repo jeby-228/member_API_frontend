@@ -1,33 +1,17 @@
-<div class="loading">
-	<div class="spinner"></div>
-	<p>載入課程中...</p>
-</div>
+<script lang="ts">
+	import { LoadingAnimation } from '$lib/components/atoms';
+	import { uiConfig } from '$lib/stores/ui-config';
 
-<style>
-	.loading {
-		text-align: center;
-		padding: 3rem 1rem;
+	interface Props {
+		type?: 'spinner' | 'dots' | 'pulse' | 'gif';
+		message?: string;
 	}
 
-	.loading .spinner {
-		width: 48px;
-		height: 48px;
-		margin: 0 auto 1rem;
-		border: 4px solid #e5e7eb;
-		border-top-color: #2563eb;
-		border-radius: 50%;
-		animation: spin 1s linear infinite;
-	}
+	let { type, message = '載入課程中...' }: Props = $props();
 
-	@keyframes spin {
-		to {
-			transform: rotate(360deg);
-		}
-	}
+	// 如果沒有指定 type，使用全域配置
+	const loadingType = $derived(type || $uiConfig.loading.defaultType);
+	const gifPath = $derived($uiConfig.loading.gifPath);
+</script>
 
-	.loading p {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-</style>
+<LoadingAnimation type={loadingType} {gifPath} {message} />
