@@ -17,18 +17,8 @@
 	} from '$lib/design/animation-tokens';
 	import { button, card, badge, input, modal } from '$lib/design/component-tokens';
 
-	let darkMode = $state(false);
 	let hoveredCard = $state<string | null>(null);
 	let activeButton = $state<string | null>(null);
-
-	function toggleDarkMode() {
-		darkMode = !darkMode;
-		if (darkMode) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
-	}
 
 	// 顏色物件轉陣列
 	const colorPalette = [
@@ -73,14 +63,11 @@
 	<!-- Header -->
 	<header class="demo-header">
 		<h1>設計規範展示</h1>
-		<button class="theme-toggle" onclick={toggleDarkMode}>
-			{darkMode ? '☀️ 淺色模式' : '🌙 深色模式'}
-		</button>
 	</header>
 
 	<!-- Typography Section -->
 	<section class="demo-section">
-		<h2 class="section-title">📝 字型系統</h2>
+		<h2 class="section-title">字型系統</h2>
 
 		<div class="subsection">
 			<h3 class="subsection-title">字體大小 (動態)</h3>
@@ -122,7 +109,7 @@
 
 	<!-- Colors Section -->
 	<section class="demo-section">
-		<h2 class="section-title">🎨 顏色系統 (動態)</h2>
+		<h2 class="section-title">顏色系統 (動態)</h2>
 
 		<div class="subsection">
 			<h3 class="subsection-title">主題色</h3>
@@ -163,7 +150,7 @@
 
 	<!-- Spacing Section -->
 	<section class="demo-section">
-		<h2 class="section-title">📏 間距系統 (動態)</h2>
+		<h2 class="section-title">間距系統 (動態)</h2>
 
 		<div class="subsection">
 			<div class="content-box">
@@ -182,7 +169,7 @@
 
 	<!-- Shadows Section -->
 	<section class="demo-section">
-		<h2 class="section-title">🌑 陰影系統 (動態)</h2>
+		<h2 class="section-title">陰影系統 (動態)</h2>
 
 		<div class="subsection">
 			<div class="content-box">
@@ -208,7 +195,7 @@
 
 	<!-- Border Radius Section -->
 	<section class="demo-section">
-		<h2 class="section-title">⭕ 圓角系統 (動態)</h2>
+		<h2 class="section-title">圓角系統 (動態)</h2>
 
 		<div class="subsection">
 			<div class="content-box">
@@ -226,7 +213,7 @@
 
 	<!-- Component Tokens Section -->
 	<section class="demo-section">
-		<h2 class="section-title">🧩 元件 Token (動態)</h2>
+		<h2 class="section-title">元件 Token (動態)</h2>
 
 		<div class="subsection">
 			<h3 class="subsection-title">按鈕樣式</h3>
@@ -297,7 +284,7 @@
 
 	<!-- Animation Tokens Section -->
 	<section class="demo-section">
-		<h2 class="section-title">🎬 動畫 Token (動態)</h2>
+		<h2 class="section-title">動畫 Token (動態)</h2>
 
 		<div class="subsection">
 			<h3 class="subsection-title">Spinner 動畫參數</h3>
@@ -335,126 +322,6 @@
 						<code>timing: {transitions.timing.ease}</code>
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Form Elements Section -->
-	<section class="demo-section">
-		<h2 class="section-title">📋 表單元素 (靜態樣式)</h2>
-
-		<div class="subsection">
-			<h3 class="subsection-title">按鈕</h3>
-			<div class="content-box">
-				<div class="button-group">
-					<button>基礎按鈕</button>
-					<button disabled>禁用按鈕</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="subsection">
-			<h3 class="subsection-title">輸入欄位</h3>
-			<div class="content-box">
-				<form class="form-demo">
-					<p>
-						<label for="input1">輸入框：</label>
-						<input id="input1" type="text" placeholder="請輸入文字" />
-					</p>
-					<p>
-						<label for="input2">禁用輸入框：</label>
-						<input id="input2" type="text" placeholder="禁用狀態" disabled />
-					</p>
-					<p>
-						<label for="textarea1">文字區域：</label><br />
-						<textarea id="textarea1" rows="4" placeholder="請輸入多行文字"></textarea>
-					</p>
-					<p>
-						<label for="select1">下拉選單：</label>
-						<select id="select1">
-							<option>選項 1</option>
-							<option>選項 2</option>
-							<option>選項 3</option>
-						</select>
-					</p>
-				</form>
-			</div>
-		</div>
-	</section>
-
-	<!-- Content Section -->
-	<section class="demo-section">
-		<h2 class="section-title">📚 內容元素 (靜態樣式)</h2>
-
-		<div class="subsection">
-			<h3 class="subsection-title">列表</h3>
-			<div class="content-box">
-				<div class="list-grid">
-					<div>
-						<h4>無序列表</h4>
-						<ul>
-							<li>項目 1</li>
-							<li>項目 2</li>
-							<li>項目 3</li>
-						</ul>
-					</div>
-					<div>
-						<h4>有序列表</h4>
-						<ol>
-							<li>第一項</li>
-							<li>第二項</li>
-							<li>第三項</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="subsection">
-			<h3 class="subsection-title">程式碼</h3>
-			<div class="content-box">
-				<p>行內程式碼：<code>const hello = 'world';</code></p>
-				<pre><code>{'// 程式碼區塊\nfunction greet(name) {\n  return `Hello, ${name}!`;\n}'}</code
-					></pre>
-			</div>
-		</div>
-
-		<div class="subsection">
-			<h3 class="subsection-title">表格</h3>
-			<div class="content-box">
-				<table>
-					<thead>
-						<tr>
-							<th>姓名</th>
-							<th>年齡</th>
-							<th>職位</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>張三</td>
-							<td>28</td>
-							<td>工程師</td>
-						</tr>
-						<tr>
-							<td>李四</td>
-							<td>32</td>
-							<td>設計師</td>
-						</tr>
-						<tr>
-							<td>王五</td>
-							<td>25</td>
-							<td>產品經理</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
-		<div class="subsection">
-			<h3 class="subsection-title">圖片</h3>
-			<div class="content-box">
-				<img src="https://placehold.co/800x400" alt="示例圖片" />
 			</div>
 		</div>
 	</section>
