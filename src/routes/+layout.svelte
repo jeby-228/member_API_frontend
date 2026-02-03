@@ -49,13 +49,12 @@
 	<div class="nav-brand">Member API</div>
 	<div class="nav-links">
 		<a href="/">Home</a>
-		<a href="/demo">Demo</a>
 		<a href="/login">Login</a>
 	</div>
-	<div class="nav-actions">
-		<ThemeToggle />
-	</div>
+	<div class="nav-actions"></div>
 </nav>
+
+<ThemeToggle />
 
 <main>
 	{@render children()}
@@ -170,9 +169,6 @@
 		transition: background-color 0.3s ease;
 		position: relative;
 		z-index: 10;
-	}
-
-	footer {
 		display: flex;
 		flex-direction: column;
 		align-items: center;

@@ -26,6 +26,9 @@
 
 <style>
 	.theme-toggle {
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
 		width: 2.5rem;
 		height: 2.5rem;
 		display: flex;
@@ -34,9 +37,9 @@
 		background: var(--bg-secondary);
 		border: 1px solid var(--border-color);
 		border-radius: 0.375rem;
-		box-shadow: none;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		transition: all 0.3s ease;
-		z-index: auto;
+		z-index: 99;
 		cursor: pointer;
 		padding: 0;
 	}
@@ -45,6 +48,7 @@
 		transform: scale(1.05);
 		background: var(--btn-primary);
 		color: white;
+		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 	}
 
 	.icon {
@@ -53,10 +57,26 @@
 		color: inherit;
 	}
 
+	/* 深色模式：使用設計規範的顏色和陰影 */
+	:global(html.dark) .theme-toggle {
+		background: var(--btn-primary);
+		color: white;
+		border-color: var(--btn-primary);
+		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+	}
+
+	:global(html.dark) .theme-toggle:hover {
+		background: #3b82f6;
+		box-shadow: 0 8px 16px rgba(37, 99, 235, 0.4);
+		transform: scale(1.1);
+	}
+
 	@media (max-width: 768px) {
 		.theme-toggle {
 			width: 2rem;
 			height: 2rem;
+			bottom: 1rem;
+			right: 1rem;
 		}
 
 		.icon {
