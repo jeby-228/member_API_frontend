@@ -1,8 +1,32 @@
 <script lang="ts">
-	import UnderConstruction from '$lib/components/UnderConstruction.svelte';
+	import { LoginForm, RegisterForm } from '$lib/features/auth';
+	import { goto } from '$app/navigation';
+
+	let mode = $state<'login' | 'register'>('login');
+
+	function handleLoginSuccess() {
+		goto('/');
+	}
+
+	function handleRegisterSuccess() {
+		goto('/');
+	}
+
+	function switchToRegister() {
+		mode = 'register';
+	}
+
+	function switchToLogin() {
+		mode = 'login';
+	}
 </script>
 
-<UnderConstruction message="此頁面正在開發中，敬請期待！">
-	<p>或是幫我寫完它？😄</p>
-	<a href="https://github.com/jeby-228/member_API_frontend/pulls">催自己寫拉 我幫你 approve</a>
-</UnderConstruction>
+<svelte:head>
+	<title>{mode === 'login' ? '登入' : '註冊'} - Workoutcome</title>
+</svelte:head>
+
+{#if mode === 'login'}
+	<LoginForm onSuccess={handleLoginSuccess} onSwitchToRegister={switchToRegister} />
+{:else}
+	<RegisterForm onSuccess={handleRegisterSuccess} onSwitchToLogin={switchToLogin} />
+{/if}

@@ -4,6 +4,9 @@
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { theme } from '$lib/stores/theme';
 	import { browser } from '$app/environment';
+	import { authStore } from '$lib/features/auth';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	let { children } = $props();
 	let isNavVisible = $state(true);
@@ -39,6 +42,16 @@
 			window.removeEventListener('scroll', handleScroll);
 		};
 	});
+
+	onMount(() => {
+		// 恢復登入狀態
+		authStore.restoreSession();
+	});
+
+	async function handleLogout() {
+		await authStore.logout();
+		goto('/login');
+	}
 </script>
 
 <svelte:head>
@@ -46,12 +59,25 @@
 </svelte:head>
 
 <nav class="layout-nav" class:hidden={!isNavVisible}>
-	<div class="nav-brand">Member API</div>
+	<div class="nav-brand">Workoutcome</div>
 	<div class="nav-links">
-		<a href="/">Home</a>
-		<a href="/login">Login</a>
+		<a href="/">首頁</a>
+		{#if $authStore.user}
+			<a href="/trainers">教練列表</a>
+			<a href="/profile">個人資料</a>
+		{/if}
 	</div>
-	<div class="nav-actions"></div>
+	<div class="nav-actions">
+		{#if $authStore.user}
+			<span class="user-info">
+				{$authStore.user.name}
+				<span class="user-role">({$authStore.user.role === 'trainer' ? '教練' : '學員'})</span>
+			</span>
+			<button class="logout-btn" onclick={handleLogout}>登出</button>
+		{:else}
+			<a href="/login" class="login-link">登入</a>
+		{/if}
+	</div>
 </nav>
 
 <ThemeToggle />
@@ -157,7 +183,55 @@
 	.nav-actions {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: var(--spacing-md);
+	}
+
+	.user-info {
+		font-size: var(--font-size-sm);
+		color: var(--text-color);
+		font-weight: var(--font-weight-medium);
+	}
+
+	.user-role {
+		color: var(--text-secondary);
+		font-size: var(--font-size-xs);
+	}
+
+	.logout-btn {
+		padding: var(--spacing-xs) var(--spacing-md);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-medium);
+		color: var(--btn-text);
+		background-color: var(--btn-primary);
+		border: none;
+		border-radius: var(--border-radius-md);
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.logout-btn:hover {
+		background-color: var(--btn-primary-hover);
+		transform: translateY(-1px);
+	}
+
+	.login-link {
+		padding: var(--spacing-xs) var(--spacing-md);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-medium);
+		color: var(--btn-text);
+		background-color: var(--btn-primary);
+		border-radius: var(--border-radius-md);
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.login-link:hover {
+		background-color: var(--btn-primary-hover);
+		transform: translateY(-1px);
+	}
+
+	.login-link::after {
+		display: none;
 	}
 
 	footer {
@@ -238,6 +312,16 @@
 		.layout-nav a::after {
 			left: 0.75rem;
 			width: calc(100% - 1.5rem);
+		}
+
+		.user-info {
+			display: none;
+		}
+
+		.logout-btn,
+		.login-link {
+			padding: 0.4rem 0.75rem;
+			font-size: 0.85rem;
 		}
 
 		footer {
