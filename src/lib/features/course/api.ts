@@ -69,6 +69,39 @@ const mockCourses: Course[] = [
 		capacity: 25,
 		enrolled: 10,
 		description: '緩和伸展運動，適合運動後放鬆或久坐族群'
+	},
+	{
+		id: '7',
+		name: '伸展放鬆課',
+		instructor: '林老師',
+		startTime: '2026-02-07T19:00:00',
+		endTime: '2026-02-07T20:00:00',
+		location: '教室 A',
+		capacity: 25,
+		enrolled: 10,
+		description: '緩和伸展運動，適合運動後放鬆或久坐族群'
+	},
+	{
+		id: '8',
+		name: '伸展放鬆課',
+		instructor: '林老師',
+		startTime: '2026-02-07T19:00:00',
+		endTime: '2026-02-07T20:00:00',
+		location: '教室 A',
+		capacity: 25,
+		enrolled: 10,
+		description: '緩和伸展運動，適合運動後放鬆或久坐族群'
+	},
+	{
+		id: '9',
+		name: '伸展放鬆課',
+		instructor: '林老師',
+		startTime: '2026-02-07T19:00:00',
+		endTime: '2026-02-07T20:00:00',
+		location: '教室 A',
+		capacity: 25,
+		enrolled: 10,
+		description: '緩和伸展運動，適合運動後放鬆或久坐族群'
 	}
 ];
 
