@@ -76,9 +76,8 @@ export function parseWeatherData(response: CWAWeatherResponse): DailyWeather[] {
 				return tDate === dateStr;
 			});
 
-			const temps = dayTemps
-				?.map((t) => parseFloat(t.parameter.parameterName))
-				.filter((t) => !isNaN(t)) || [];
+			const temps =
+				dayTemps?.map((t) => parseFloat(t.parameter.parameterName)).filter((t) => !isNaN(t)) || [];
 
 			// 取得該日的降雨機率
 			const dayPop = pop?.time.find((p) => {
