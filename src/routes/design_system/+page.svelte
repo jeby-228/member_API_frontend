@@ -140,11 +140,22 @@
 				</table>
 			</div>
 		</div>
-
 		<div class="subsection">
 			<h3 class="subsection-title">圖片</h3>
 			<div class="content-box">
 				<img src="https://placehold.co/800x400" alt="示例圖片" />
+			</div>
+		</div>
+		<div class="subsection">
+			<h3 class="subsection-title">標籤 Badge</h3>
+			<div class="content-box">
+				<div class="badge-group">
+					<span class="badge-text badge-primary">Primary</span>
+					<span class="badge-text badge-warning">Warning</span>
+					<span class="badge-text badge-danger">Danger</span>
+					<span class="badge-text badge-success">Success</span>
+					<span class="badge-text badge-info">Info</span>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -247,6 +258,56 @@
 
 	.list-grid h4 {
 		margin-top: 0;
+	}
+
+	/* Badge Group */
+	.badge-group {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	/* Badge Styles */
+	.badge-text {
+		display: inline-block;
+		padding: 0.375rem 0.75rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		border-radius: 0.375rem;
+		transition: all 0.2s ease;
+	}
+
+	.badge-primary {
+		background-color: var(--badge-success-bg);
+		color: var(--badge-success-text);
+	}
+
+	.badge-warning {
+		background-color: var(--badge-warning-bg);
+		color: var(--badge-warning-text);
+	}
+
+	.badge-danger {
+		background-color: var(--badge-danger-bg);
+		color: var(--badge-danger-text);
+	}
+
+	.badge-success {
+		background-color: var(--badge-success-bg);
+		color: var(--badge-success-text);
+	}
+
+	.badge-info {
+		background-color: var(--badge-info-bg);
+		color: var(--badge-info-text);
+	}
+
+	/* Badge Hover Effects */
+	.badge-text:hover {
+		opacity: 0.85;
+		transform: translateY(-1px);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 
 	/* Responsive */
