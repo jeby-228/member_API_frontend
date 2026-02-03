@@ -1,23 +1,7 @@
-<script lang="ts">
-	let darkMode = $state(false);
-
-	function toggleDarkMode() {
-		darkMode = !darkMode;
-		if (darkMode) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
-	}
-</script>
-
 <div class="container demo-page">
 	<!-- Header -->
 	<header class="demo-header">
 		<h1>設計規範展示</h1>
-		<button class="theme-toggle" onclick={toggleDarkMode}>
-			{darkMode ? '☀️ 淺色模式' : '🌙 深色模式'}
-		</button>
 	</header>
 
 	<!-- Typography Section -->
@@ -184,22 +168,6 @@
 	.demo-header h1 {
 		margin: 0;
 		font-size: 2rem;
-	}
-
-	.theme-toggle {
-		padding: 0.5rem 1.5rem;
-		font-size: 1rem;
-		background-color: var(--btn-primary);
-		color: white;
-		border: none;
-		border-radius: 0.5rem;
-		cursor: pointer;
-		transition: all 0.3s ease;
-	}
-
-	.theme-toggle:hover {
-		background-color: var(--btn-primary-hover);
-		transform: translateY(-2px);
 	}
 
 	/* Section */

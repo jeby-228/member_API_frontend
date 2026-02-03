@@ -62,7 +62,7 @@
 <div class="container demo-page">
 	<!-- Header -->
 	<header class="demo-header">
-		<h1>設計規範展示</h1>
+		<h1>設計規範展示 動態渲染</h1>
 	</header>
 
 	<!-- Typography Section -->
