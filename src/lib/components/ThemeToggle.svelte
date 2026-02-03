@@ -26,44 +26,42 @@
 
 <style>
 	.theme-toggle {
-		position: fixed;
-		bottom: 2rem;
-		right: 2rem;
-		width: 3rem;
-		height: 3rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--card-bg);
+		background: var(--bg-secondary);
 		border: 1px solid var(--border-color);
-		border-radius: 50%;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		border-radius: 0.375rem;
+		box-shadow: none;
 		transition: all 0.3s ease;
-		z-index: 1000;
+		z-index: auto;
+		cursor: pointer;
+		padding: 0;
 	}
 
 	.theme-toggle:hover {
-		transform: scale(1.1);
-		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+		transform: scale(1.05);
+		background: var(--btn-primary);
+		color: white;
 	}
 
 	.icon {
-		width: 1.5rem;
-		height: 1.5rem;
-		color: var(--text-color);
+		width: 1.25rem;
+		height: 1.25rem;
+		color: inherit;
 	}
 
 	@media (max-width: 768px) {
 		.theme-toggle {
-			bottom: 1rem;
-			right: 1rem;
-			width: 2.5rem;
-			height: 2.5rem;
+			width: 2rem;
+			height: 2rem;
 		}
 
 		.icon {
-			width: 1.25rem;
-			height: 1.25rem;
+			width: 1rem;
+			height: 1rem;
 		}
 	}
 </style>
