@@ -29,59 +29,41 @@
 		position: fixed;
 		bottom: 2rem;
 		right: 2rem;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 3rem;
+		height: 3rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--bg-secondary);
+		background: var(--card-bg);
 		border: 1px solid var(--border-color);
-		border-radius: 0.375rem;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 50%;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 		transition: all 0.3s ease;
-		z-index: 99;
-		cursor: pointer;
-		padding: 0;
+		z-index: 1000;
 	}
 
 	.theme-toggle:hover {
-		transform: scale(1.05);
-		background: var(--btn-primary);
-		color: white;
-		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+		transform: scale(1.1);
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 	}
 
 	.icon {
-		width: 1.25rem;
-		height: 1.25rem;
-		color: inherit;
-	}
-
-	/* 深色模式：使用設計規範的顏色和陰影 */
-	:global(html.dark) .theme-toggle {
-		background: var(--btn-primary);
-		color: white;
-		border-color: var(--btn-primary);
-		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-	}
-
-	:global(html.dark) .theme-toggle:hover {
-		background: #3b82f6;
-		box-shadow: 0 8px 16px rgba(37, 99, 235, 0.4);
-		transform: scale(1.1);
+		width: 1.5rem;
+		height: 1.5rem;
+		color: var(--text-color);
 	}
 
 	@media (max-width: 768px) {
 		.theme-toggle {
-			width: 2rem;
-			height: 2rem;
 			bottom: 1rem;
 			right: 1rem;
+			width: 2.5rem;
+			height: 2.5rem;
 		}
 
 		.icon {
-			width: 1rem;
-			height: 1rem;
+			width: 1.25rem;
+			height: 1.25rem;
 		}
 	}
 </style>
