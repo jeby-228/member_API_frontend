@@ -54,6 +54,23 @@
 	--badge-danger-bg: #7f1d1d;
 	--badge-info-bg: #1e3a8a;
 	--badge-info-text: #60a5fa;
+
+	.--badge-success {
+		color: var(--badge-success-text);
+		background-color: var(--badge-success-bg);
+	}
+	.--badge-warning {
+		color: var(--badge-warning-text);
+		background-color: var(--badge-warning-bg);
+	}
+	.--badge-danger {
+		color: var(--badge-danger-text);
+		background-color: var(--badge-danger-bg);
+	}
+	.--badge-info {
+		color: var(--badge-info-text);
+		background-color: var(--badge-info-bg);
+	}
 }
 
 // 重置預設樣式
