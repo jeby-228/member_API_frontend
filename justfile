@@ -22,12 +22,15 @@ set-loading-gif PATH:
 show-loading:
 	@echo "📋 當前 Loading 動畫配置："
 	@grep -A 5 "defaultType:" src/lib/stores/ui-config.ts
-    
+
 # ============================================
 # 開發指令
 # ============================================
 
 init:
+    sudo apt update
+    sudo apt-get install nodejs
+    sudo apt install npm
     npm install
 
 run:
