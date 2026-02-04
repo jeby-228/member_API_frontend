@@ -65,6 +65,7 @@ check-svelte:
 
 lint-test:
     just test
+    just check-svelte
     just fmt-check
     just check
 
