@@ -3,6 +3,7 @@
 	injectSpeedInsights();
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import favicon from '$lib/assets/favicon.svg';
+	import { resolve } from '$app/paths';
 	import '../app.css';
 
 	let { children } = $props();
@@ -31,7 +32,7 @@
 		</button>
 	</div>
 	<div class="flex-1">
-		<a class="btn btn-ghost text-xl" href="/">Jeby WebSite</a>
+		<a class="btn btn-ghost text-xl" href={resolve('/')}>Jeby WebSite</a>
 	</div>
 	<div class="flex-none">
 		<button class="btn btn-square btn-ghost">

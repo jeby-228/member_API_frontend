@@ -1,42 +1,46 @@
-# sv
+# Member API Frontend
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SvelteKit 前端專案
 
-## Creating a project
+## 環境需求
 
-If you're seeing this, you've probably already done this step. Congrats!
+- linux OR macOS
+- Node.js 20+
+- npm
+- just (recommended)
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## 技術棧
 
-To recreate this project with the same configuration:
+- SvelteKit
+- TypeScript
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --add prettier eslint vitest="usages:unit" --install npm ./
-```
+### 套件
 
-## Developing
+- Tailwind CSS
+- daisyUI
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### 格式化工具
 
-```sh
-npm run dev
+- Eslint
+- Prettier
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### 部屬
 
-## Building
+- Vercel
 
-To create a production version of your app:
+## gitflow
 
-```sh
-npm run build
-```
+![GitFlow](gitflow.svg)
 
-You can preview the production build with `npm run preview`.
+## 部屬策略
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+部屬依賴在 Vercel 平台上，採用自動化部屬策略。
+
+![deployFlow](deploy.svg)
+
+- ✅ 顏色系統（11 大類）
+- ✅ 間距系統（8 個級別）
+- ✅ 字體系統（完整）
+- ✅ 陰影系統（7 個級別）
+- ✅ Loading 動畫（3 種）
+- ✅ 深色模式支援
