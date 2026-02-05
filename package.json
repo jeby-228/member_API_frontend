@@ -13,7 +13,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write . && eslint . --fix",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.1",
