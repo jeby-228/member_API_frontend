@@ -4,16 +4,16 @@
 	import { Carousel } from '@skeletonlabs/skeleton-svelte';
 
 	const slides = [
-		{ title: 'Slide 1' },
-		{ title: 'Slide 2' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 4' },
-		{ title: 'Slide 5' },
-		{ title: 'Slide 6' },
-		{ title: 'Slide 7' },
-		{ title: 'Slide 8' },
-		{ title: 'Slide 9' },
-		{ title: 'Slide 10' }
+		{ id: 1, title: 'Slide 1' },
+		{ id: 2, title: 'Slide 2' },
+		{ id: 3, title: 'Slide 3' },
+		{ id: 4, title: 'Slide 4' },
+		{ id: 5, title: 'Slide 5' },
+		{ id: 6, title: 'Slide 6' },
+		{ id: 7, title: 'Slide 7' },
+		{ id: 8, title: 'Slide 8' },
+		{ id: 9, title: 'Slide 9' },
+		{ id: 10, title: 'Slide 10' }
 	];
 </script>
 
@@ -48,7 +48,7 @@
 		</Carousel.NextTrigger>
 	</Carousel.Control>
 	<Carousel.ItemGroup>
-		{#each slides as slide, i}
+		{#each slides as slide, i (slide.id)}
 			<Carousel.Item
 				index={i}
 				class="flex h-50 items-center justify-center card bg-surface-100-900 p-4"
@@ -60,7 +60,7 @@
 	<Carousel.IndicatorGroup>
 		<Carousel.Context>
 			{#snippet children(carousel)}
-				{#each carousel().pageSnapPoints as _, index}
+				{#each carousel().pageSnapPoints as _snapPoint, index (index)}
 					<Carousel.Indicator {index} />
 				{/each}
 			{/snippet}

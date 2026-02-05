@@ -74,13 +74,7 @@
 	</AppBar.Toolbar>
 	{#if showSearch}
 		<div transition:slide={{ duration: 200 }} class="px-4 pb-4">
-			<input
-				type="search"
-				bind:value={searchQuery}
-				placeholder="搜尋..."
-				class="input w-full"
-				autofocus
-			/>
+			<input type="search" bind:value={searchQuery} placeholder="搜尋..." class="input w-full" />
 		</div>
 	{/if}
 </AppBar>
@@ -105,7 +99,7 @@
 								<Navigation.TriggerText>儀表板</Navigation.TriggerText>
 							</Navigation.TriggerAnchor>
 							<Navigation.TriggerAnchor
-								href={resolve('/profile')}
+								href={resolve('/profile' as '/')}
 								class={isActive('/profile') ? 'preset-filled' : ''}
 							>
 								<UserIcon class="mr-2 size-5" />
@@ -117,14 +111,14 @@
 						<Navigation.Label>設定</Navigation.Label>
 						<Navigation.Menu>
 							<Navigation.TriggerAnchor
-								href={resolve('/preferences')}
+								href={resolve('/preferences' as '/')}
 								class={isActive('/preferences') ? 'preset-filled' : ''}
 							>
 								<SettingsIcon class="mr-2 size-5" />
 								<Navigation.TriggerText>偏好設定</Navigation.TriggerText>
 							</Navigation.TriggerAnchor>
 							<Navigation.TriggerAnchor
-								href={resolve('/help')}
+								href={resolve('/help' as '/')}
 								class={isActive('/help') ? 'preset-filled' : ''}
 							>
 								<HelpCircleIcon class="mr-2 size-5" />

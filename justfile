@@ -1,6 +1,6 @@
 default:
     @just --list
-run: 
+run:
     npm run dev
 
 init:
@@ -21,7 +21,6 @@ check:
     npm run check
 
 ci:
-    npm ci
     just check
     just lint
     just build
