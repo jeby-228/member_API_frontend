@@ -49,6 +49,7 @@ description: Copilot AI 協作指引 - 程式碼風格與開發原則
 - 只使用 Tailwind CSS 和 DaisyUI
 
 ## code style
+
 - 使用 Prettier 進行程式碼格式化
 - 使用 ESLint 進行程式碼品質檢查
 - 遵循專案中既定的 ESLint 規則
