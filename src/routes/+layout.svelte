@@ -1,250 +1,163 @@
 <script lang="ts">
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import '../styles/global.scss';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { theme } from '$lib/stores/theme';
-	import { browser } from '$app/environment';
+	import { slide } from 'svelte/transition';
+	import {
+		CalendarIcon,
+		CircleUserIcon,
+		MenuIcon,
+		SearchIcon,
+		GithubIcon,
+		HomeIcon,
+		UserIcon,
+		SettingsIcon,
+		HelpCircleIcon
+	} from '@lucide/svelte';
+	import { AppBar, Navigation } from '@skeletonlabs/skeleton-svelte';
+	import { env } from '$env/dynamic/public';
+	import { resolve } from '$app/paths';
+	import { page } from '$app/stores';
 
+	let repo_name = env.PUBLIC_GITHUB_REPO;
 	let { children } = $props();
-	let isNavVisible = $state(true);
-	let lastScrollY = $state(0);
+	let showSidebar = $state(true);
+	let showSearch = $state(false);
+	let searchQuery = $state('');
 
-	injectSpeedInsights();
-	$effect(() => {
-		if (browser) {
-			document.documentElement.classList.toggle('dark', $theme === 'dark');
+	// 判斷當前路由是否為活動狀態
+	function isActive(path: string) {
+		return $page.url.pathname === path;
+	}
+
+	// 搜尋功能
+	function handleSearch() {
+		showSearch = !showSearch;
+		if (!showSearch) {
+			searchQuery = '';
 		}
-	});
-
-	$effect(() => {
-		if (!browser) return;
-
-		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
-
-			// 往下滑動時隱藏 nav（向下滑動超過 50px）
-			if (currentScrollY > lastScrollY && currentScrollY > 50) {
-				isNavVisible = false;
-			}
-			// 往上滑動時顯示 nav
-			else if (currentScrollY < lastScrollY) {
-				isNavVisible = true;
-			}
-
-			lastScrollY = currentScrollY;
-		};
-
-		window.addEventListener('scroll', handleScroll, { passive: true });
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	});
+	}
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<nav class="layout-nav" class:hidden={!isNavVisible}>
-	<div class="nav-brand">Member API</div>
-	<div class="nav-links">
-		<a href="/">Home</a>
-		<a href="/design_system">Design System</a>
-		<a href="/design_system_dynamic">Design System Dynamic</a>
-		<a href="/login">Login</a>
-	</div>
-</nav>
+<AppBar>
+	<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
+		<AppBar.Lead>
+			<button
+				type="button"
+				class="btn-icon btn-icon-lg hover:preset-tonal"
+				onclick={() => (showSidebar = !showSidebar)}
+				aria-label="切換選單"
+			>
+				<MenuIcon />
+			</button>
+		</AppBar.Lead>
+		<AppBar.Headline>
+			<a href={resolve('/')} class="text-2xl transition-opacity hover:opacity-80">Skeleton</a>
+		</AppBar.Headline>
+		<AppBar.Trail>
+			<button
+				type="button"
+				class="btn-icon hover:preset-tonal"
+				onclick={handleSearch}
+				aria-label="搜尋"
+			>
+				<SearchIcon class="size-6" />
+			</button>
+			<button type="button" class="btn-icon hover:preset-tonal" aria-label="行事曆">
+				<CalendarIcon class="size-6" />
+			</button>
+			<button type="button" class="btn-icon hover:preset-tonal" aria-label="使用者資料">
+				<CircleUserIcon class="size-6" />
+			</button>
+		</AppBar.Trail>
+	</AppBar.Toolbar>
+	{#if showSearch}
+		<div transition:slide={{ duration: 200 }} class="px-4 pb-4">
+			<input
+				type="search"
+				bind:value={searchQuery}
+				placeholder="搜尋..."
+				class="input w-full"
+				autofocus
+			/>
+		</div>
+	{/if}
+</AppBar>
 
-<ThemeToggle />
+<div class="flex h-[calc(100vh-4rem)]">
+	<!-- Sidebar -->
+	{#if showSidebar}
+		<div transition:slide={{ duration: 300, axis: 'x' }} class="h-full">
+			<Navigation layout="sidebar" class="flex h-full flex-col">
+				<Navigation.Header>
+					<h2 class="text-lg font-bold">選單</h2>
+				</Navigation.Header>
+				<Navigation.Content class="flex-1">
+					<Navigation.Group>
+						<Navigation.Label>主要</Navigation.Label>
+						<Navigation.Menu>
+							<Navigation.TriggerAnchor
+								href={resolve('/')}
+								class={isActive('/') ? 'preset-filled' : ''}
+							>
+								<HomeIcon class="mr-2 size-5" />
+								<Navigation.TriggerText>儀表板</Navigation.TriggerText>
+							</Navigation.TriggerAnchor>
+							<Navigation.TriggerAnchor
+								href={resolve('/profile')}
+								class={isActive('/profile') ? 'preset-filled' : ''}
+							>
+								<UserIcon class="mr-2 size-5" />
+								<Navigation.TriggerText>個人資料</Navigation.TriggerText>
+							</Navigation.TriggerAnchor>
+						</Navigation.Menu>
+					</Navigation.Group>
+					<Navigation.Group>
+						<Navigation.Label>設定</Navigation.Label>
+						<Navigation.Menu>
+							<Navigation.TriggerAnchor
+								href={resolve('/preferences')}
+								class={isActive('/preferences') ? 'preset-filled' : ''}
+							>
+								<SettingsIcon class="mr-2 size-5" />
+								<Navigation.TriggerText>偏好設定</Navigation.TriggerText>
+							</Navigation.TriggerAnchor>
+							<Navigation.TriggerAnchor
+								href={resolve('/help')}
+								class={isActive('/help') ? 'preset-filled' : ''}
+							>
+								<HelpCircleIcon class="mr-2 size-5" />
+								<Navigation.TriggerText>幫助與支援</Navigation.TriggerText>
+							</Navigation.TriggerAnchor>
+						</Navigation.Menu>
+					</Navigation.Group>
+				</Navigation.Content>
+				<Navigation.Footer class="mt-auto">
+					<div class="border-t border-surface-700 pt-4">
+						<div class="flex items-center gap-3 px-4 py-2">
+							<div class="flex-1">
+								<p class="text-sm font-semibold">Jeby</p>
+								<p class="text-xs text-surface-400">開發者</p>
+							</div>
+							<a
+								href={repo_name}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn-icon hover:preset-tonal"
+								aria-label="GitHub 儲存庫"
+							>
+								<GithubIcon class="size-5" />
+							</a>
+						</div>
+					</div>
+				</Navigation.Footer>
+			</Navigation>
+		</div>
+	{/if}
 
-<main>
-	{@render children()}
-</main>
-
-<footer>
-	<div>website design by Jeby</div>
-	<a
-		href="https://github.com/jeby-228/member_API_frontend"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		github link
-		<img class="github-icon" src="/assets/icons/github.svg" alt="GitHub Logo" />
-	</a>
-</footer>
-
-<style>
-	:global(body) {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
-	main {
-		flex: 1;
-		padding-top: 2rem;
-		padding-bottom: 3rem;
-	}
-
-	.layout-nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 2rem;
-		padding: 1rem 2rem;
-		background-color: var(--card-bg);
-		border-bottom: 1px solid var(--border-color);
-		position: sticky;
-		top: 0;
-		z-index: 100;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-		transition: all 0.3s ease;
-		transform: translateY(0);
-	}
-
-	.layout-nav.hidden {
-		transform: translateY(-100%);
-		box-shadow: none;
-	}
-
-	.nav-brand {
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: var(--btn-primary);
-		white-space: nowrap;
-	}
-
-	.nav-links {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		flex: 1;
-	}
-
-	.layout-nav a {
-		color: var(--text-color);
-		text-decoration: none;
-		font-weight: 500;
-		padding: 0.5rem 1rem;
-		border-radius: 0.375rem;
-		transition: all 0.3s ease;
-		position: relative;
-		font-size: 0.95rem;
-	}
-
-	.layout-nav a:hover {
-		color: var(--btn-primary);
-		background-color: var(--bg-secondary);
-	}
-
-	.layout-nav a::after {
-		content: '';
-		position: absolute;
-		bottom: 6px;
-		left: 1rem;
-		width: calc(100% - 2rem);
-		height: 2px;
-		background-color: var(--btn-primary);
-		transform: scaleX(0);
-		transform-origin: left;
-		transition: transform 0.3s ease;
-		border-radius: 2px;
-	}
-
-	.layout-nav a:hover::after {
-		transform: scaleX(1);
-	}
-
-	.nav-actions {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	footer {
-		margin-top: auto;
-		padding: 2rem;
-		border-top: 1px solid var(--border-color);
-		background-color: var(--card-bg);
-		color: var(--text-secondary);
-		transition: background-color 0.3s ease;
-		position: relative;
-		z-index: 10;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-		text-align: center;
-	}
-
-	footer > div {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-	}
-
-	footer a {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		color: inherit;
-		text-decoration: none;
-		transition: all 0.3s ease;
-		padding: 0.5rem 1rem;
-		border-radius: 0.375rem;
-	}
-
-	footer a:hover {
-		color: var(--text-color);
-		background-color: var(--bg-secondary);
-		transform: translateY(-2px);
-	}
-
-	.github-icon {
-		width: 24px;
-		height: 24px;
-		transition:
-			transform 0.3s ease,
-			filter 0.3s ease;
-	}
-
-	footer a:hover .github-icon {
-		transform: scale(1.1);
-	}
-
-	:global(html.dark) .github-icon {
-		filter: invert(1);
-	}
-
-	@media (max-width: 768px) {
-		.layout-nav {
-			padding: 1rem;
-			gap: 1rem;
-		}
-
-		.nav-brand {
-			font-size: 1rem;
-			min-width: auto;
-		}
-
-		.nav-links {
-			gap: 0.5rem;
-			flex: 0;
-		}
-
-		.layout-nav a {
-			padding: 0.4rem 0.75rem;
-			font-size: 0.85rem;
-		}
-
-		.layout-nav a::after {
-			left: 0.75rem;
-			width: calc(100% - 1.5rem);
-		}
-
-		footer {
-			padding: 1.5rem 1rem;
-		}
-	}
-</style>
+	<!-- Main Content -->
+	<main class="flex-1 overflow-y-auto p-4">
+		{@render children()}
+	</main>
+</div>

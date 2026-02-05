@@ -9,6 +9,21 @@ SvelteKit 前端專案
 - npm
 - just (recommended)
 
+## 技術棧
+
+- SvelteKit
+- TypeScript
+
+### 套件
+
+- Tailwind CSS
+- daisyUI
+
+### 格式化工具
+
+- Eslint
+- Prettier
+
 ## gitflow
 
 ![GitFlow](gitflow.svg)
