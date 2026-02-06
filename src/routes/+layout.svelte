@@ -19,8 +19,8 @@
 	import { page } from '$app/stores';
 
 	let repo_name = env.PUBLIC_GITHUB_REPO;
-	let { children } = $props();
-	let showSidebar = $state(true);
+	let { children,data } = $props();
+	let showSidebar = $state(false);
 	let showSearch = $state(false);
 	let searchQuery = $state('');
 
@@ -38,7 +38,10 @@
 	}
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+	{@html `<style>${data.css}</style>`}
+	</svelte:head>
 
 <AppBar>
 	<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
