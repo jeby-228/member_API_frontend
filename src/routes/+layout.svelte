@@ -19,7 +19,7 @@
 	import { page } from '$app/stores';
 
 	let repo_name = env.PUBLIC_GITHUB_REPO;
-	let { children,data } = $props();
+	let { children, data } = $props();
 	let showSidebar = $state(false);
 	let showSearch = $state(false);
 	let searchQuery = $state('');
@@ -40,8 +40,9 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<style>${data.css}</style>`}
-	</svelte:head>
+</svelte:head>
 
 <AppBar>
 	<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">

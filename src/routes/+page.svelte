@@ -138,7 +138,7 @@
 		</div>
 
 		<div class="mb-2 grid grid-cols-7 gap-2">
-			{#each ['日', '一', '二', '三', '四', '五', '六'] as day}
+			{#each ['日', '一', '二', '三', '四', '五', '六'] as day, index (index)}
 				<div class="text-center text-sm font-semibold text-surface-400 dark:text-surface-500">
 					{day}
 				</div>
@@ -146,7 +146,7 @@
 		</div>
 
 		<div class="grid grid-cols-7 gap-2">
-			{#each calendarDays() as date}
+			{#each calendarDays() as date, index (index)}
 				{@const classes = getClassesForDate(date)}
 				{@const isCurrent = isCurrentMonth(date)}
 				{@const isTodayDate = isToday(date)}
@@ -172,7 +172,7 @@
 
 					{#if classes.length > 0}
 						<div class="space-y-1">
-							{#each classes.slice(0, 2) as classItem}
+							{#each classes.slice(0, 2) as classItem (classItem.id)}
 								<div
 									class="{classItem.color} truncate rounded px-1.5 py-0.5 text-xs text-white"
 									title="{classItem.coachName} - {classItem.className} ({classItem.time})"
@@ -205,7 +205,7 @@
 
 			{#if selectedClasses.length > 0}
 				<div class="space-y-3">
-					{#each selectedClasses as classItem}
+					{#each selectedClasses as classItem (classItem.id)}
 						<div class="flex items-center gap-4 card preset-filled p-4 dark:bg-surface-900">
 							<div class="{classItem.color} h-12 w-1 rounded"></div>
 							<div class="flex-1">
