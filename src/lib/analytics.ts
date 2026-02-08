@@ -7,9 +7,9 @@ declare global {
 	}
 }
 
-export function trackPageView(url: string) {
-	const measurementId = env.PUBLIC_GA4_MEASUREMENT_ID;
+const measurementId = browser ? env.PUBLIC_GA4_MEASUREMENT_ID : undefined;
 
+export function trackPageView(url: string) {
 	if (!browser || !window.gtag || !measurementId) return;
 
 	window.gtag('config', measurementId, {
