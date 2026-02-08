@@ -4,10 +4,13 @@ import { render } from 'vitest-browser-svelte';
 import Page from './+page.svelte';
 
 describe('/+page.svelte', () => {
-	it('should render h1', async () => {
+	it('should render steps component', async () => {
 		render(Page);
 
-		const heading = page.getByRole('heading', { level: 1 });
-		await expect.element(heading).toBeInTheDocument();
+		const firstStep = page.getByRole('tab', { name: 'First' });
+		await expect.element(firstStep).toBeInTheDocument();
+
+		const nextButton = page.getByRole('button', { name: 'Next' });
+		await expect.element(nextButton).toBeInTheDocument();
 	});
 });

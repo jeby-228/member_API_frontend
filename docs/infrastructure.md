@@ -36,3 +36,9 @@ git --version
 gh --version
 just --version
 ```
+
+## 環境變數
+
+```bash
+cp .env.example .env
+```
