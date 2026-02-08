@@ -1,4 +1,8 @@
 <script lang="ts">
+	// vercel speed insights
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	injectSpeedInsights();
+	//
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { slide } from 'svelte/transition';
@@ -57,7 +61,7 @@
 			</button>
 		</AppBar.Lead>
 		<AppBar.Headline>
-			<a href={resolve('/')} class="text-2xl transition-opacity hover:opacity-80">Skeleton</a>
+			<a href={resolve('/')} class="text-2xl transition-opacity hover:opacity-80">Jeby Website</a>
 		</AppBar.Headline>
 		<AppBar.Trail>
 			<button
