@@ -21,9 +21,10 @@
 	import { env } from '$env/dynamic/public';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
+	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 
 	let repo_name = env.PUBLIC_GITHUB_REPO;
-	let { children, data } = $props();
+	let { children } = $props();
 	let showSidebar = $state(false);
 	let showSearch = $state(false);
 	let searchQuery = $state('');
@@ -44,8 +45,6 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<style>${data.css}</style>`}
 </svelte:head>
 
 <AppBar>
@@ -64,6 +63,7 @@
 			<a href={resolve('/')} class="text-2xl transition-opacity hover:opacity-80">Jeby Website</a>
 		</AppBar.Headline>
 		<AppBar.Trail>
+			<ThemeSwitcher />
 			<button
 				type="button"
 				class="btn-icon hover:preset-tonal"
