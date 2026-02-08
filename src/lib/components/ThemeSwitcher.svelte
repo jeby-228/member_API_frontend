@@ -7,9 +7,9 @@
 		{ name: 'cerberus', label: 'Cerberus 🤖' },
 		{ name: 'mona', label: 'Mona 🐙' },
 		{ name: 'vox', label: 'Vox 👾' }
+		// approximately 20 themes available in Skeleton, you can add more here as needed
 	];
 
-	// 從 localStorage 讀取或使用預設主題
 	let currentTheme = $state(browser ? localStorage.getItem('theme') || 'cerberus' : 'cerberus');
 
 	// 切換主題
