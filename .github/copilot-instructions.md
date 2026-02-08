@@ -17,7 +17,7 @@ description: Copilot AI 協作指引 - 程式碼風格與開發原則
 - 使用小寫字母並儘量簡短
 - 資料應該儲存為文字檔案
 - 可移植性比效率更重要
-- 使用原子設計(Atomic Design)來設計程式
+- 使用原子設計(Atomic Design)設計程式
 
 ### UNIX 哲學
 
