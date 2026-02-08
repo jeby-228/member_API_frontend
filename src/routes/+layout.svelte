@@ -2,6 +2,13 @@
 	// vercel speed insights
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	injectSpeedInsights();
+	// google analytics 4
+	import { page } from '$app/stores';
+	import { trackPageView } from '$lib/analytics';
+
+	$effect(() => {
+		trackPageView($page.url.pathname);
+	});
 	//
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
