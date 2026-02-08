@@ -1,41 +1,35 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import {
-		getAvailableCourses,
-		CourseList,
-		LoadingState,
-		ErrorState,
-		EmptyState,
-		type Course
-	} from '$lib/features/course';
+	import { Steps } from '@skeletonlabs/skeleton-svelte';
 
-	let courses = $state<Course[]>([]);
-	let isLoading = $state(true);
-	let error = $state<string | null>(null);
-
-	async function loadCourses() {
-		isLoading = true;
-		error = null;
-		try {
-			courses = await getAvailableCourses();
-		} catch (err) {
-			error = err instanceof Error ? err.message : '載入課程失敗';
-		} finally {
-			isLoading = false;
-		}
-	}
-
-	onMount(loadCourses);
+	const steps = [
+		{ title: 'First', content: 'First do this.' },
+		{ title: 'Then', content: 'Then do that.' },
+		{ title: 'Finally', content: 'Almost done...' }
+	];
 </script>
 
-<div class="container">
-	{#if isLoading}
-		<LoadingState />
-	{:else if error}
-		<ErrorState message={error} onRetry={loadCourses} />
-	{:else if courses.length === 0}
-		<EmptyState />
-	{:else}
-		<CourseList {courses} />
-	{/if}
-</div>
+<Steps count={steps.length} class="w-full">
+	<Steps.List>
+		{#each steps as item, index (index)}
+			<Steps.Item {index}>
+				<Steps.Trigger>
+					<Steps.Indicator>{index + 1}</Steps.Indicator>
+					{item.title}
+				</Steps.Trigger>
+				{#if index < steps.length - 1}
+					<Steps.Separator />
+				{/if}
+			</Steps.Item>
+		{/each}
+	</Steps.List>
+	{#each steps as item, index (index)}
+		<Steps.Content {index}>
+			{item.content}
+		</Steps.Content>
+	{/each}
+	<Steps.Content index={steps.length}>All done!</Steps.Content>
+	<div class="flex items-center justify-between gap-2">
+		<Steps.PrevTrigger class="btn preset-filled">Back</Steps.PrevTrigger>
+		<Steps.NextTrigger class="btn preset-filled">Next</Steps.NextTrigger>
+	</div>
+</Steps>

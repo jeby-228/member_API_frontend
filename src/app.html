@@ -3,28 +3,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		<!-- 防止主題閃爍：在頁面載入前就套用主題 -->
 		<script>
-			(function () {
-				try {
-					const theme = localStorage.getItem('theme-preference');
-					if (theme === 'dark') {
-						document.documentElement.classList.add('dark');
-					} else if (theme === 'light') {
-						document.documentElement.classList.remove('dark');
-					} else {
-						// 如果沒有儲存的偏好，使用系統偏好
-						if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-							document.documentElement.classList.add('dark');
-						}
-					}
-				} catch (e) {
-					// 忽略錯誤（例如 localStorage 被禁用）
-				}
-			})();
+			// 防止主題閃爍：在頁面載入前先設定主題
+			const theme = localStorage.getItem('theme') || 'cerberus';
+			document.documentElement.setAttribute('data-theme', theme);
 		</script>
-
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
