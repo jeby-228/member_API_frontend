@@ -1,13 +1,16 @@
 default:
     @just --list
-run:
-    npm run dev
 
 init:
     npm install
+    npx playwright install --with-deps chromium   
 
 build:
     npm run build
+
+run:
+    npm run dev
+
 lint:
     npm run lint
 
@@ -27,8 +30,8 @@ quick:
 
 # 完整 CI 檢查（包含測試和建置）
 ci:
-    just test
     just check
     just lint
+    just test
     just build
 

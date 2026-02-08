@@ -51,9 +51,13 @@
 			<button type="button" class="btn-icon hover:preset-tonal" aria-label="行事曆">
 				<CalendarIcon class="size-6" />
 			</button>
-			<button type="button" class="btn-icon hover:preset-tonal" aria-label="使用者資料">
+			<a
+				href={resolve('/profile' as '/')}
+				class="btn-icon hover:preset-tonal"
+				aria-label="使用者資料"
+			>
 				<CircleUserIcon class="size-6" />
-			</button>
+			</a>
 		</AppBar.Trail>
 	</AppBar.Toolbar>
 	<SearchBar bind:show={showSearch} bind:query={searchQuery} />

@@ -40,12 +40,12 @@
 					<Navigation.Label>Main</Navigation.Label>
 					<Navigation.Menu>
 						<Navigation.TriggerAnchor
-							href={resolve('/profile' as '/')}
-							class={isActive('/profile') ? 'preset-filled' : ''}
+							href={resolve('/about' as '/')}
+							class={isActive('/about') ? 'preset-filled' : ''}
 							onclick={handleClick}
 						>
 							<UserIcon class="mr-2 size-5" />
-							<Navigation.TriggerText>Profile</Navigation.TriggerText>
+							<Navigation.TriggerText>About</Navigation.TriggerText>
 						</Navigation.TriggerAnchor>
 					</Navigation.Menu>
 				</Navigation.Group>
