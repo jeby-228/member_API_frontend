@@ -30,4 +30,3 @@ jobs:
 
       - name: Run Justfile lint-test
         run: just ci
-
