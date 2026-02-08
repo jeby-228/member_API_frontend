@@ -8,6 +8,7 @@
 	];
 </script>
 
+<<<<<<< HEAD
 <Steps count={steps.length} class="w-full">
 	<Steps.List>
 		{#each steps as item, index (index)}
@@ -33,3 +34,16 @@
 		<Steps.NextTrigger class="btn preset-filled">Next</Steps.NextTrigger>
 	</div>
 </Steps>
+=======
+<div class="container">
+	{#if isLoading}
+		<LoadingState />
+	{:else if error}
+		<ErrorState message={error} onRetry={loadCourses} />
+	{:else if courses.length === 0}
+		<EmptyState />
+	{:else}
+		<CourseList {courses} />
+	{/if}
+</div>
+>>>>>>> main

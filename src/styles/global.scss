@@ -1,0 +1,249 @@
+// ============================================
+// 全局樣式
+// ============================================
+
+@use 'sass:color';
+@use './_variables.scss' as *;
+
+// CSS 變數定義
+:root {
+	--bg-color: #{$white};
+	--bg-secondary: #{$gray-50};
+	--text-color: #{$gray-900};
+	--text-secondary: #{$gray-600};
+	--border-color: #{$border-color};
+	--card-bg: #{$white};
+	--card-hover-shadow: rgba(0, 0, 0, 0.1);
+
+	// 按鈕顏色
+	--btn-primary: #2563eb;
+	--btn-primary-hover: #1d4ed8;
+	--btn-disabled: #9ca3af;
+
+	// Badge 顏色
+	--badge-success-text: #10b981;
+	--badge-success-bg: #d1fae5;
+	--badge-warning-text: #f59e0b;
+	--badge-warning-bg: #fef3c7;
+	--badge-danger-text: #dc3545;
+	--badge-danger-bg: #fee2e2;
+	--badge-info-bg: #1e3a8a;
+	--badge-info-text: #60a5fa;
+}
+
+:root.dark {
+	--bg-color: #{$dark-bg};
+	--bg-secondary: #{$dark-bg-secondary};
+	--text-color: #{$dark-text};
+	--text-secondary: #{$dark-text-secondary};
+	--border-color: #{$dark-border};
+	--card-bg: #{$dark-bg-secondary};
+	--card-hover-shadow: rgba(0, 0, 0, 0.3);
+
+	// 深色模式按鈕顏色
+	--btn-primary: #3b82f6;
+	--btn-primary-hover: #2563eb;
+	--btn-disabled: #6b7280;
+
+	// 深色模式 Badge 顏色
+	--badge-success-text: #34d399;
+	--badge-success-bg: #065f46;
+	--badge-warning-text: #fbbf24;
+	--badge-warning-bg: #78350f;
+	--badge-danger-text: #f87171;
+	--badge-danger-bg: #7f1d1d;
+	--badge-info-bg: #1e3a8a;
+	--badge-info-text: #60a5fa;
+}
+
+// 重置預設樣式
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+	color: var(--text-color);
+	background-color: var(--bg-color);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+// 標題樣式
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: $spacing-md 0;
+	font-weight: $font-weight-bold;
+	line-height: $line-height-tight;
+	color: var(--text-color);
+}
+
+h1 {
+	font-size: $font-size-2xl;
+}
+
+h2 {
+	font-size: $font-size-xl;
+}
+
+h3 {
+	font-size: $font-size-lg;
+}
+
+// 段落樣式
+p {
+	margin: $spacing-md 0;
+}
+
+// 連結樣式
+a {
+	color: $primary;
+	text-decoration: none;
+	transition: color $transition-duration $transition-timing;
+
+	&:hover {
+		color: color.adjust($primary, $lightness: -10%);
+		text-decoration: underline;
+	}
+}
+
+// 按鈕樣式
+button {
+	font-family: inherit;
+	cursor: pointer;
+	border: none;
+	border-radius: $border-radius-md;
+	transition: all $transition-duration $transition-timing;
+}
+
+// 表單元素
+input,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	border: $border-width solid var(--border-color);
+	border-radius: $border-radius-md;
+	padding: $spacing-sm $spacing-md;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	transition: border-color $transition-duration $transition-timing;
+
+	&:focus {
+		outline: none;
+		border-color: $primary;
+		box-shadow: 0 0 0 3px rgba($primary, 0.1);
+	}
+
+	&:disabled {
+		background-color: var(--bg-secondary);
+		cursor: not-allowed;
+	}
+}
+
+// 列表樣式
+ul,
+ol {
+	margin: $spacing-md 0;
+	padding-left: $spacing-xl;
+}
+
+li {
+	margin: $spacing-sm 0;
+}
+
+// 代碼樣式
+code {
+	font-family: $font-family-mono;
+	background-color: var(--bg-secondary);
+	border-radius: $border-radius-sm;
+	padding: 0.125rem $spacing-sm;
+	color: $danger;
+}
+
+pre {
+	background-color: $gray-900;
+	color: $white;
+	padding: $spacing-md;
+	border-radius: $border-radius-md;
+	overflow-x: auto;
+
+	code {
+		background-color: transparent;
+		color: inherit;
+		padding: 0;
+	}
+}
+
+// 表格樣式
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: $spacing-md 0;
+
+	th,
+	td {
+		padding: $spacing-md;
+		text-align: left;
+		border-bottom: $border-width solid var(--border-color);
+	}
+
+	th {
+		background-color: var(--bg-secondary);
+		font-weight: $font-weight-bold;
+	}
+
+	tr:hover {
+		background-color: var(--bg-secondary);
+	}
+}
+
+// 響應式圖片
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+// 容器
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 $spacing-md;
+
+	@media (min-width: $breakpoint-sm) {
+		max-width: 540px;
+	}
+
+	@media (min-width: $breakpoint-md) {
+		max-width: 720px;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 960px;
+	}
+
+	@media (min-width: $breakpoint-xl) {
+		max-width: 1140px;
+	}
+
+	@media (min-width: $breakpoint-2xl) {
+		max-width: 1320px;
+	}
+}
