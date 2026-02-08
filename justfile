@@ -21,6 +21,8 @@ check:
     npm run check
 
 ci:
+    just test
     just check
     just lint
     just build
+
