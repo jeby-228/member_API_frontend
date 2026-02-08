@@ -10,9 +10,7 @@
 	];
 
 	// 從 localStorage 讀取或使用預設主題
-	let currentTheme = $state(
-		browser ? localStorage.getItem('theme') || 'cerberus' : 'cerberus'
-	);
+	let currentTheme = $state(browser ? localStorage.getItem('theme') || 'cerberus' : 'cerberus');
 
 	// 切換主題
 	function setTheme(theme: string) {

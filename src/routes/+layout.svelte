@@ -5,7 +5,7 @@
 	//
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import { slide } from 'svelte/transition';
+	import { slide, fade } from 'svelte/transition';
 	import {
 		CalendarIcon,
 		CircleUserIcon,
@@ -87,10 +87,24 @@
 	{/if}
 </AppBar>
 
-<div class="flex h-[calc(100vh-4rem)]">
+<div class="relative flex h-[calc(100vh-4rem)]">
+	<!-- 遮罩層 - 點擊可關閉側邊欄 -->
+	{#if showSidebar}
+		<div
+			transition:fade={{ duration: 200 }}
+			class="fixed inset-0 top-16 z-30 bg-black/50"
+			onclick={() => (showSidebar = false)}
+			role="presentation"
+			aria-hidden="true"
+		></div>
+	{/if}
+
 	<!-- Sidebar -->
 	{#if showSidebar}
-		<div transition:slide={{ duration: 300, axis: 'x' }} class="h-full">
+		<div
+			transition:slide={{ duration: 300, axis: 'x' }}
+			class="fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-64"
+		>
 			<Navigation layout="sidebar" class="flex h-full flex-col">
 				<Navigation.Header>
 					<h2 class="text-lg font-bold">選單</h2>
@@ -102,6 +116,7 @@
 							<Navigation.TriggerAnchor
 								href={resolve('/')}
 								class={isActive('/') ? 'preset-filled' : ''}
+								onclick={() => (showSidebar = false)}
 							>
 								<HomeIcon class="mr-2 size-5" />
 								<Navigation.TriggerText>儀表板</Navigation.TriggerText>
@@ -109,6 +124,7 @@
 							<Navigation.TriggerAnchor
 								href={resolve('/profile' as '/')}
 								class={isActive('/profile') ? 'preset-filled' : ''}
+								onclick={() => (showSidebar = false)}
 							>
 								<UserIcon class="mr-2 size-5" />
 								<Navigation.TriggerText>個人資料</Navigation.TriggerText>
@@ -121,6 +137,7 @@
 							<Navigation.TriggerAnchor
 								href={resolve('/preferences' as '/')}
 								class={isActive('/preferences') ? 'preset-filled' : ''}
+								onclick={() => (showSidebar = false)}
 							>
 								<SettingsIcon class="mr-2 size-5" />
 								<Navigation.TriggerText>偏好設定</Navigation.TriggerText>
@@ -128,6 +145,7 @@
 							<Navigation.TriggerAnchor
 								href={resolve('/help' as '/')}
 								class={isActive('/help') ? 'preset-filled' : ''}
+								onclick={() => (showSidebar = false)}
 							>
 								<HelpCircleIcon class="mr-2 size-5" />
 								<Navigation.TriggerText>幫助與支援</Navigation.TriggerText>
