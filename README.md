@@ -1,7 +1,3 @@
-# Member API Frontend
-
-SvelteKit 前端專案
-
 ## 環境需求
 
 - linux OR macOS
@@ -11,6 +7,7 @@ SvelteKit 前端專案
 
 ## 技術棧
 
+- Svelte 5
 - SvelteKit
 - TypeScript
 
