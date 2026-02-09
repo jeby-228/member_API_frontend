@@ -14,7 +14,7 @@
 ### 套件
 
 - Tailwind CSS
-- daisyUI
+- skeleton
 
 ### 格式化工具
 
