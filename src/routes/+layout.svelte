@@ -2,15 +2,14 @@
 	// vercel speed insights
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	injectSpeedInsights();
+	// vercel speed insights
 	// google analytics 4
 	import { page } from '$app/stores';
 	import { trackPageView } from '$lib/analytics';
-
-	// 追蹤客戶端路由導航（初始頁面載入由 app.html 中的腳本處理）
 	$effect(() => {
 		trackPageView($page.url.pathname);
 	});
-	//
+	// google analytics 4
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import AppHeader from '$lib/components/AppHeader.svelte';
