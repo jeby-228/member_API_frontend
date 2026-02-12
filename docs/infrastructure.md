@@ -21,10 +21,11 @@ sudo apt install -y just
 sudo apt install -y gh
 ```
 
-## 安裝 node.js 和 npm
+## 安裝 node.js 和 pnpm
 
 ```bash
 sudo apt install -y nodejs npm
+npm install -g pnpm
 ```
 
 # 驗證
