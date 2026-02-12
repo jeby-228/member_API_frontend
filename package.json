@@ -54,7 +54,9 @@
 		"lucide-svelte": "^0.563.0",
 		"super-sitemap": "^1.0.7"
 	},
-	"overrides": {
-		"cookie": "^0.7.0"
+	"pnpm": {
+		"overrides": {
+			"cookie": ">=0.7.0"
+		}
 	}
 }
