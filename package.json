@@ -53,5 +53,8 @@
 		"@vitest/coverage-v8": "^4.0.18",
 		"lucide-svelte": "^0.563.0",
 		"super-sitemap": "^1.0.7"
+	},
+	"overrides": {
+		"cookie": "^0.7.0"
 	}
 }
