@@ -30,8 +30,5 @@ jobs:
       - name: Install dependencies
         run: just init
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps chromium
-
       - name: Run Justfile ci
         run: just ci
