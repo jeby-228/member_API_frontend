@@ -2,26 +2,26 @@ default:
     @just --list
 
 init:
-    npm install
-    npx playwright install --with-deps chromium   
+    pnpm install
+    pnpm exec playwright install --with-deps chromium
 
 build:
-    npm run build
+    pnpm run build
 
 run:
-    npm run dev
+    pnpm run dev
 
 lint:
-    npm run lint
+    pnpm run lint
 
 fmt:
-    npm run format
+    pnpm run format
 
 test:
-    npm run test
+    pnpm run test
 
 check:
-    npm run check
+    pnpm run check
 
 # 快速檢查（跳過測試和建置，適合開發時使用）
 quick:

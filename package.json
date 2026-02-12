@@ -13,8 +13,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write . ",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run",
-		"test:watch": "npm run test:unit -- --watch",
+		"test": "pnpm run test:unit -- --run",
+		"test:watch": "pnpm run test:unit -- --watch",
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
@@ -53,5 +53,8 @@
 		"@vitest/coverage-v8": "^4.0.18",
 		"lucide-svelte": "^0.563.0",
 		"super-sitemap": "^1.0.7"
+	},
+	"overrides": {
+		"cookie": "^0.7.0"
 	}
 }
