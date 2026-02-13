@@ -2,7 +2,7 @@
 
 - linux OR macOS
 - Node.js 20+
-- npm
+- pnpm
 - just (recommended)
 
 ## 環境變數設定
@@ -27,7 +27,7 @@ cp .env.example .env
 ### 套件
 
 - Tailwind CSS
-- skeleton
+- Skeleton
 
 ### 格式化工具
 
