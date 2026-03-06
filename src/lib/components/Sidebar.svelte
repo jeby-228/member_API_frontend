@@ -5,6 +5,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
+	import NowVersion from '$lib/components/NowVersion.svelte';
 
 	let { show = $bindable() } = $props();
 	let repo_name = env.PUBLIC_GITHUB_REPO;
@@ -87,6 +88,9 @@
 						>
 							<GithubIcon class="size-5" />
 						</a>
+					</div>
+					<div class="px-4 pb-2">
+						<NowVersion />
 					</div>
 				</div>
 			</Navigation.Footer>
