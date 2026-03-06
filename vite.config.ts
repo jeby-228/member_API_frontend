@@ -8,9 +8,11 @@ function getGitInfo() {
 	try {
 		const branch = execSync('git branch --show-current').toString().trim();
 		const version = execSync('git describe --tags --always').toString().trim();
-		return { branch, version };
+		const lastCommitTime = execSync('git log -1 --format=%ci').toString().trim();
+		const isDirty = execSync('git status --porcelain').toString().trim().length > 0;
+		return { branch, version, lastCommitTime, isDirty };
 	} catch {
-		return { branch: 'unknown', version: 'unknown' };
+		return { branch: 'unknown', version: 'unknown', lastCommitTime: 'unknown', isDirty: false };
 	}
 }
 
@@ -20,7 +22,9 @@ export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
 	define: {
 		__GIT_BRANCH__: JSON.stringify(gitInfo.branch),
-		__GIT_VERSION__: JSON.stringify(gitInfo.version)
+		__GIT_VERSION__: JSON.stringify(gitInfo.version),
+		__GIT_LAST_COMMIT_TIME__: JSON.stringify(gitInfo.lastCommitTime),
+		__IS_DIRTY__: JSON.stringify(gitInfo.isDirty)
 	},
 	optimizeDeps: {
 		include: ['@skeletonlabs/skeleton-svelte', '@lucide/svelte']
