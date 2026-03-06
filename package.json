@@ -57,7 +57,8 @@
 	"pnpm": {
 		"overrides": {
 			"cookie": ">=0.7.0",
-			"fast-xml-parser": ">=5.3.6"
+			"fast-xml-parser": ">=5.3.6",
+			"rollup": ">=4.59.0"
 		}
 	}
 }
