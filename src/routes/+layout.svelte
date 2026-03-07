@@ -3,6 +3,7 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	injectSpeedInsights();
+	injectAnalytics();
 	// vercel speed insights and analytics
 	// google analytics 4
 	import { page } from '$app/stores';
