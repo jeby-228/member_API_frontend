@@ -10,8 +10,8 @@ export function GET() {
 	return json({
 		branch: __GIT_BRANCH__,
 		version: __GIT_VERSION__,
-		hash: __COMMIT_HASH__,
-		last_commit_time: __GIT_LAST_COMMIT_TIME__,
-		is_dirty: __IS_DIRTY__
+		commitHash: __COMMIT_HASH__,
+		lastCommitTime: __GIT_LAST_COMMIT_TIME__,
+		isDirty: __IS_DIRTY__
 	});
 }
