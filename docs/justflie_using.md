@@ -23,7 +23,7 @@
 just init
 ```
 
-此命令會執行 `npm install` 安裝所有項目依賴。
+此命令會執行 `pnpm install` 安裝所有項目依賴，並安裝 Playwright 瀏覽器（供測試使用）。
 
 ## 可用命令
 
@@ -57,7 +57,7 @@ just build
 
 ### `just lint`
 
-運行代碼風格檢查和 ESLint 檢驗。
+運行代碼格式檢查與 Oxlint 檢驗。
 
 ```bash
 just lint
@@ -65,18 +65,24 @@ just lint
 
 此命令會檢查：
 
-- Prettier 代碼格式
-- ESLint 代碼質量規則
+- **Oxfmt** 代碼格式（`oxfmt --check`）
+- **Oxlint** 代碼質量規則（含 TypeScript 與 Svelte 規則）
+
+若要自動修正 lint 問題，可執行：
+
+```bash
+pnpm run lint:fix
+```
 
 ### `just fmt`
 
-自動格式化代碼（使用 Prettier）。
+自動格式化代碼（使用 Oxfmt）。
 
 ```bash
 just fmt
 ```
 
-此命令會修復所有格式不符合 Prettier 標準的代碼。
+此命令會修復所有格式不符合 Oxfmt 標準的代碼（含 `.svelte` 檔案與 Tailwind class 排序）。
 
 ### `just test`
 
@@ -108,9 +114,20 @@ just ci
 
 1. `just check` - 類型檢查
 2. `just lint` - 代碼風格檢查
-3. `just build` - 構建項目
+3. `just test` - 單元測試
+4. `just build` - 構建項目
 
 **推薦在提交代碼前運行此命令。**
+
+### `just quick`
+
+快速檢查（跳過測試與建置，適合開發時使用）。
+
+```bash
+just quick
+```
+
+此命令依序執行 `just check` 與 `just lint`。
 
 ## 工作流程示例
 
@@ -161,18 +178,21 @@ A: 嘗試運行 `just init` 重新安裝依賴。
 - **Skeleton Labs**: UI 组件庫
 - **Lucide Svelte**: 圖標庫
 - **TypeScript**: 類型安全的 JavaScript
+- **Oxc (Oxlint / Oxfmt)**: 高效能的 lint 與格式化工具
 
 ## 相關檔案
 
 - `justfile` - Just 任務定義文件
-- `package.json` - NPM 依賴和腳本配置
+- `package.json` - pnpm 依賴和腳本配置
 - `tsconfig.json` - TypeScript 配置
 - `svelte.config.js` - Svelte/SvelteKit 配置
 - `tailwind.config.js` - Tailwind 配置
-- `eslint.config.js` - ESLint 配置
+- `.oxlintrc.json` - Oxlint 配置
+- `.oxfmtrc.json` - Oxfmt 配置
 
 ## 更多資訊
 
 - [Just 官方文檔](https://just.systems/)
 - [SvelteKit 文檔](https://kit.svelte.dev/)
 - [Skeleton Labs 組件庫](https://www.skeletonlabs.com/)
+- [Oxc 官方文檔](https://oxc.rs/)
